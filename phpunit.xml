@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit>
+
+
+    <testsuites>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration.Auth">
+            <directory suffix="Test.php">./tests/Integration/Auth</directory>
+        </testsuite>
+
+
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./app/Http/Controllers</directory>
+
+        </whitelist>
+
+    </filter>
+
+
+</phpunit>
