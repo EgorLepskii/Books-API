@@ -13,11 +13,4 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-
-    public function index(Request $request)
-    {
-        $user = new User(['name' => 'name', 'email' => 'email', 'password' => '1234']);
-
-        $user->save();
-    }
 }

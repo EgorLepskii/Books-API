@@ -69,8 +69,6 @@ class AuthTest extends \Tests\TestCase
      */
     public function testRefreshToken()
     {
-        $expTime = time() + AuthController::TOKEN_LIVE_TIME;
-
         $refreshedToken = json_decode($this->post
         (
             route('user.refresh'),
@@ -83,7 +81,7 @@ class AuthTest extends \Tests\TestCase
         $tokenParts = explode('.',$refreshedToken);
 
         $refreshedTokenPayload = json_decode(base64_decode($tokenParts[1]));
-        $this->assertEquals($refreshedTokenPayload->exp, $expTime);
+        $this->assertEquals($refreshedTokenPayload->exp, time() + AuthController::TOKEN_LIVE_TIME);
     }
 
     public function tearDown(): void
