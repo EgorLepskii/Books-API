@@ -5,6 +5,7 @@ namespace Tests\Integration\Auth;
 use App\Http\Controllers\AuthController;
 use App\Models\User;
 use Faker\Factory;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 

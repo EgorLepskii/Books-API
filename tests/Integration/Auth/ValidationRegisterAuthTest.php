@@ -32,9 +32,9 @@ class ValidationRegisterAuthTest extends \Tests\TestCase
         $this->post(route('user.register'), $data)->assertStatus(400);
 
         $user = new User();
-        $user::query()->where('email', '=',$data['email'])->first();
+        $user = $user::query()->where('email', '=',$data['email'])->first();
 
-        $this->assertEmpty($user->toArray());
+        $this->assertEmpty($user);
 
     }
 

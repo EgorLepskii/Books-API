@@ -23,7 +23,19 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'isAdmin'
     ];
+
+    public $table = 'users';
+
+
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->isAdmin ?? false;
+    }
 
     /**
      * The attributes that should be hidden for serialization.
