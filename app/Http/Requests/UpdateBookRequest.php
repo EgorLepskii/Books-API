@@ -35,7 +35,7 @@ class UpdateBookRequest extends FormRequest implements Constants
 
         return [
             'name' =>
-                "required|string|min:{$minBookNameLen}|max:{$maxBookNameLen}|exists:books",
+                "required|string|min:{$minBookNameLen}|max:{$maxBookNameLen}|unique:books",
             'annotation' => "required|string|min:{$minAnnotationNameLen}|max:{$maxAnnotationNameLen}",
             'authors' => "required|string|min:{$minAuthorsNameLen}|max:{$maxAuthorsNameLen}",
             'price' => "required|numeric|between:{$minBookPrice},{$maxBookPrice}",

@@ -27,7 +27,7 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     public $table = 'users';
-
+    protected $isAdmin;
 
     /**
      * @return bool

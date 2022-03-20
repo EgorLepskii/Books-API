@@ -50,7 +50,6 @@ class CreateBookRequest extends FormRequest implements Constants
     {
         return
             [
-                'required' => 'Данное поле не может быть пустым',
             ];
     }
 }

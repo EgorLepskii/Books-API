@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Admin extends User
 {
     use HasFactory;
+
+    protected $isAdmin = true;
 }

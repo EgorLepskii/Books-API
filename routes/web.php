@@ -47,6 +47,6 @@ Route::group([
     'prefix' => 'bookManage'
 ], function () {
     Route::post('/book', [ManageBooksController::class, 'store'])->name('manageBook.store');
-    Route::post('/book/{book}', [ManageBooksController::class, 'store'])->name('manageBook.update');
+    Route::post('/book/{book}', [ManageBooksController::class, 'update'])->name('manageBook.update');
 });
 
