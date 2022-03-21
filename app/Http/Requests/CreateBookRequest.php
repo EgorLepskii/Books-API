@@ -42,6 +42,7 @@ class CreateBookRequest extends FormRequest implements Constants
             'annotation' => "required|string|min:{$minAnnotationNameLen}|max:{$maxAnnotationNameLen}",
             'authors' => "required|string|min:{$minAuthorsNameLen}|max:{$maxAuthorsNameLen}",
             'price' => "required|numeric|between:{$minBookPrice},{$maxBookPrice}",
+            'genreId' => 'required|int|exists:genres,id'
         ];
     }
 

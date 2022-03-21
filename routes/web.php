@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ManageBooksController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -17,7 +18,7 @@ use App\Http\Controllers\AuthController;
 */
 
 //Auth::routes();
-
+App::setLocale('en');
 
 Route::get('/', [Controller::class, 'index'])->name('home.index');
 
@@ -43,7 +44,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => 'admin',
+    //'middleware' => 'admin',
     'prefix' => 'bookManage'
 ], function () {
     Route::post('/book', [ManageBooksController::class, 'store'])->name('manageBook.store');

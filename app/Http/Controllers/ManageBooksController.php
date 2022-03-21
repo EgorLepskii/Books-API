@@ -7,10 +7,12 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 use SebastianBergmann\Diff\Exception;
 
 class ManageBooksController extends Controller
 {
+    private Book $book;
 
     /**
      * Create new Book
@@ -18,10 +20,12 @@ class ManageBooksController extends Controller
      */
     public function store(CreateBookRequest $request)
     {
-        $input = $request->only(['name','annotation','authors','price','isHidden']);
-        $book = new Book();
-        $book->save();
-        return response()->json(['response'=>'success'],201);
+        $input = $request->only(['name','annotation','authors','price','isHidden','genreId']);
+        $this->book = new Book($input);
+        $this->book->save();
+
+        return response()->json(['response'=>
+            Lang::get('manageBook.createSuccess',['bookName' => $this->book->getName()])],201);
     }
 
 
@@ -33,8 +37,11 @@ class ManageBooksController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
-        $input = $request->only(['name','annotation','authors','price','isHidden']);
+        $prevName = $book->getName();
+        $input = $request->only(['name','annotation','authors','price','isHidden', 'genreId']);
         $book->update($input);
-        return response()->json(['data'=>'updated successfully'], 201);
+
+        return response()->json(['response'=>
+            Lang::get('manageBook.updateSuccess',['bookPrevName' => $prevName])],201);
     }
 }

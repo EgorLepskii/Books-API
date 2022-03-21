@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Books extends Migration
+class Genres extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class Books extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('genres', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('genreId');
-            $table->foreign('genreId')->references('id')->on('books');
             $table->string('name')->unique();
-            $table->text('annotation');
-            $table->string('authors');
-            $table->unsignedDecimal('price');
-            $table->boolean('isHidden')->default(false);
             $table->timestamps();
         });
     }
@@ -33,7 +27,6 @@ class Books extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
 
     }
 }

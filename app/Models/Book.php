@@ -9,11 +9,26 @@ class Book extends Model
 {
     use HasFactory;
 
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name ?? "";
+    }
+
     protected $fillable =
         [
-          'name',
-          'annotation',
-          'authors',
-          'price'
+            'name',
+            'genreId',
+            'annotation',
+            'authors',
+            'price'
         ];
+
+    public function genre()
+    {
+        return $this->hasOne('genres','genreId','id');
+    }
 }

@@ -82,7 +82,7 @@ class AuthTest extends \Tests\TestCase
         $tokenParts = explode('.',$refreshedToken);
 
         $refreshedTokenPayload = json_decode(base64_decode($tokenParts[1]));
-        $this->assertEquals($refreshedTokenPayload->exp, time() + AuthController::TOKEN_LIVE_TIME);
+        $this->assertTrue(abs($refreshedTokenPayload->exp - (time() + AuthController::TOKEN_LIVE_TIME)) < 1);
     }
 
     public function tearDown(): void
