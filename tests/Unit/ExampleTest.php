@@ -24,5 +24,10 @@ class ExampleTest extends TestCase
      */
     public function test_example()
     {
+        $controller = new ManageBooksController();
+        $bookrequest = new CreateBookRequest();
+        $bookrequest->merge(['name'=>'15','annotation'=>'a','authors'=>'aa','price'=>12,'genreId'=>75]);
+
+        dd($controller->store($bookrequest));
     }
 }

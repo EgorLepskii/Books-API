@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookPageController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ManageBooksController;
 use Illuminate\Support\Facades\App;
@@ -17,7 +19,6 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-//Auth::routes();
 App::setLocale('en');
 
 Route::get('/', [Controller::class, 'index'])->name('home.index');
@@ -44,10 +45,18 @@ Route::group([
 });
 
 Route::group([
-    //'middleware' => 'admin',
+    'middleware' => 'admin',
     'prefix' => 'bookManage'
 ], function () {
     Route::post('/book', [ManageBooksController::class, 'store'])->name('manageBook.store');
     Route::post('/book/{book}', [ManageBooksController::class, 'update'])->name('manageBook.update');
+});
+
+
+Route::group([
+    'prefix' => 'bookPage'
+], function () {
+    Route::get('/book', [BookPageController::class, 'index'])->name('bookPage.index');
+    Route::get('/book/{book}', [BookPageController::class, 'show'])->name('bookPage.show');
 });
 

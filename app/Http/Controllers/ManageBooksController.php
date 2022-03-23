@@ -8,15 +8,19 @@ use App\Models\Book;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\View\View;
 use SebastianBergmann\Diff\Exception;
 
+/**
+ * Controller for manage book.
+ */
 class ManageBooksController extends Controller
 {
     private Book $book;
 
     /**
-     * Create new Book
-     * @return \Illuminate\Http\JsonResponse
+     * Create new book
+     *
      */
     public function store(CreateBookRequest $request)
     {
@@ -24,10 +28,9 @@ class ManageBooksController extends Controller
         $this->book = new Book($input);
         $this->book->save();
 
-        return response()->json(['response'=>
+        return response(['response' =>
             Lang::get('manageBook.createSuccess',['bookName' => $this->book->getName()])],201);
     }
-
 
     /**
      * Update existing book
