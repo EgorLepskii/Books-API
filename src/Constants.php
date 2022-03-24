@@ -12,6 +12,8 @@ interface Constants
     public const MIN_ANNOTATION_LENGTH = 0;
     public const MAX_AUTHORS_NAME_LEN = 1000;
     public const MIN_AUTHORS_NAME_LENGTH = 0;
+    public const MIN_FIELD_LENGTH = 1;
+    public const MAX_FIELD_LENGTH = 200;
 
 }
 
