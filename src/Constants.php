@@ -14,6 +14,7 @@ interface Constants
     public const MIN_AUTHORS_NAME_LENGTH = 0;
     public const MIN_FIELD_LENGTH = 1;
     public const MAX_FIELD_LENGTH = 200;
+    public const MAX_SELECT_COUNT = 20;
 
 }
 

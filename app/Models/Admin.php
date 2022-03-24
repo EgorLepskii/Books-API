@@ -10,4 +10,6 @@ class Admin extends User
     use HasFactory;
 
     protected $isAdmin = true;
+
+
 }

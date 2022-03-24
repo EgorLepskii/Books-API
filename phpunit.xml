@@ -5,11 +5,11 @@
     <testsuites>
         <testsuite name="Unit">
 
-            <!--<directory suffix="Test.php">./tests/Unit</directory>-->
+          <!--<directory suffix="Test.php">./tests/Unit</directory>-->
 
         </testsuite>
         <testsuite name="Integration.Auth">
-           <directory suffix="Test.php">./tests/Integration</directory>
+          <directory suffix="Test.php">./tests/Integration</directory>
         </testsuite>
 
 

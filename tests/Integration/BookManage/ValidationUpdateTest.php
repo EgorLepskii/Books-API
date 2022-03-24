@@ -28,9 +28,9 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
         $user = new Admin
         (
             [
-                'name'=>$this->faker->name,
-                'email'=>$this->faker->email,
-                'password'=>$this->faker->password
+                'name' => $this->faker->name,
+                'email' => $this->faker->email,
+                'password' => $this->faker->password
             ]
         );
 
@@ -51,8 +51,8 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
      */
     public function testCorrectData(array $data)
     {
-        if(!isset($data['genreId'])){
-            $genre = new Genre(['name'=>$this->faker->name]);
+        if (!isset($data['genreId'])) {
+            $genre = new Genre(['name' => $this->faker->name]);
             $genre->save();
             $data['genreId'] = $genre->id;
         }
@@ -63,7 +63,7 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
         $data['name'] = $this->faker->firstName;
         $this->post(route('manageBook.update', $book->id), $data)->assertStatus(201);
         $this->assertEquals($data['name'],
-            $book::query()->where('id','=', $book->id)->first()->name);
+            $book::query()->where('id', '=', $book->id)->first()->name);
     }
 
 
@@ -79,7 +79,7 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
                         'name' => $faker->firstName,
                         'annotation' => $faker->streetName,
                         'authors' => $faker->name,
-                        'price' => $faker->numberBetween(self::MIN_BOOK_PRICE,self::MAX_BOOK_PRICE),
+                        'price' => $faker->numberBetween(self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
                         'isHidden' => false,
                         'genreId' => null
 
@@ -91,7 +91,7 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
                         'name' => $faker->firstName,
                         'annotation' => $faker->streetName,
                         'authors' => $faker->streetName,
-                        'price' => $faker->randomFloat(4,self::MIN_BOOK_PRICE,self::MAX_BOOK_PRICE),
+                        'price' => $faker->randomFloat(4, self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
                         'isHidden' => true,
                         'genreId' => null
 
@@ -110,19 +110,19 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
      */
     public function testIncorrectData(array $incorrectData)
     {
-        $genre = new Genre(['name'=>$this->faker->name]);
+        $genre = new Genre(['name' => $this->faker->name]);
         $genre->save();
 
-        if(!isset($incorrectData['genreId'])){
+        if (!isset($incorrectData['genreId'])) {
             $incorrectData['genreId'] = $genre->id;
         }
 
-        $correctData  =
+        $correctData =
             [
                 'name' => $this->faker->name,
                 'annotation' => $this->faker->name,
                 'authors' => $this->faker->name,
-                'price' => $this->faker->randomFloat(4,self::MIN_BOOK_PRICE,self::MAX_BOOK_PRICE),
+                'price' => $this->faker->randomFloat(4, self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
                 'isHidden' => true,
                 'genreId' => $genre->id
             ];
@@ -131,7 +131,7 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
         $book->save();
         $this->post(route('manageBook.update', $book->id), $incorrectData)->assertSessionHasErrors();
         $this->assertEquals($book->name,
-            $book::query()->where('id','=', $book->id)->first()->name);
+            $book::query()->where('id', '=', $book->id)->first()->name);
 
     }
 
@@ -146,26 +146,26 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
                         'name' => '',
                         'annotation' => $faker->streetName,
                         'authors' => $faker->streetName,
-                        'price' => $faker->randomFloat(4,self::MIN_BOOK_PRICE,self::MAX_BOOK_PRICE),
+                        'price' => $faker->randomFloat(4, self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
                         'isHidden' => true,
                         'genreId' => null
 
                     ]
-                ],'empty_annotation' => [
+                ], 'empty_annotation' => [
                 [
                     'name' => $faker->name,
                     'annotation' => '',
                     'authors' => $faker->streetName,
-                    'price' => $faker->randomFloat(4,self::MIN_BOOK_PRICE,self::MAX_BOOK_PRICE),
+                    'price' => $faker->randomFloat(4, self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
                     'isHidden' => true,
                     'genreId' => null
                 ]
-            ],'empty_authors' => [
+            ], 'empty_authors' => [
                 [
                     'name' => $faker->name,
                     'annotation' => $faker->streetName,
                     'authors' => '',
-                    'price' => $faker->randomFloat(4,self::MIN_BOOK_PRICE,self::MAX_BOOK_PRICE),
+                    'price' => $faker->randomFloat(4, self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
                     'isHidden' => true,
                     'genreId' => null
                 ]
@@ -185,7 +185,7 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
                         'name' => $faker->sentence(self::MAX_BOOK_NAME_LEN + 1),
                         'annotation' => $faker->streetName,
                         'authors' => $faker->streetName,
-                        'price' => $faker->randomFloat(4,self::MIN_BOOK_PRICE,self::MAX_BOOK_PRICE),
+                        'price' => $faker->randomFloat(4, self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
                         'isHidden' => true,
                         'genreId' => null
                     ]
@@ -193,9 +193,9 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
                 'annotation_length_exceeded' => [
                     [
                         'name' => $faker->name,
-                        'annotation' => $faker->sentence(self::MAX_ANNOTATION_LEN+1),
+                        'annotation' => $faker->sentence(self::MAX_ANNOTATION_LEN + 1),
                         'authors' => $faker->streetName,
-                        'price' => $faker->randomFloat(4,self::MIN_BOOK_PRICE,self::MAX_BOOK_PRICE),
+                        'price' => $faker->randomFloat(4, self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
                         'isHidden' => true,
                         'genreId' => null
 
@@ -207,7 +207,7 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
                         'name' => $faker->name,
                         'annotation' => $faker->name,
                         'authors' => $faker->sentence(self::MAX_AUTHORS_NAME_LEN + 1),
-                        'price' => $faker->randomFloat(4,self::MIN_BOOK_PRICE,self::MAX_BOOK_PRICE),
+                        'price' => $faker->randomFloat(4, self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
                         'isHidden' => true,
                         'genreId' => null
 
@@ -249,24 +249,25 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
 
 
                     ]
-                ],'hidden_field_empty' => [
-                    [
-                        'name' => $faker->name,
-                        'annotation' => $faker->name,
-                        'authors' => $faker->name,
-                        'price' => self::MIN_BOOK_PRICE-1,
-                        'isHidden' => true,
-                        'genreId' => null
+                ], 'hidden_field_empty' => [
+
+                [
+                    'name' => $faker->name,
+                    'annotation' => $faker->name,
+                    'authors' => $faker->name,
+                    'price' => self::MIN_BOOK_PRICE - 1,
+                    'isHidden' => true,
+                    'genreId' => null
 
 
-                    ]
-                ],
+                ]
+            ],
                 'empty_genre' => [
                     [
                         'name' => $faker->name,
                         'annotation' => $faker->name,
                         'authors' => $faker->name,
-                        'price' => self::MIN_BOOK_PRICE-1,
+                        'price' => self::MIN_BOOK_PRICE - 1,
                         'isHidden' => true,
                         'genreId' => ''
                     ]
@@ -277,7 +278,7 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
                         'name' => $faker->name,
                         'annotation' => $faker->name,
                         'authors' => $faker->name,
-                        'price' => self::MIN_BOOK_PRICE-1,
+                        'price' => self::MIN_BOOK_PRICE - 1,
                         'isHidden' => true,
                         'genreId' => $this->faker->email
                     ]
@@ -286,8 +287,6 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
 
             ];
     }
-
-
 
 
     public function tearDown(): void

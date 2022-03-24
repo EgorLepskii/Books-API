@@ -34,19 +34,18 @@ class BookPageController extends Controller
     public function show(Book $book)
     {
         $this->book = $book;
-        $priceDifference = $book->getPrice() * self::SIMILAR_PRICE_DIFFERENCE / 100;
-        $leftPriceLimit = $book->getPrice() - $priceDifference;
-        $rightPriceLimit = $book->getPrice() + $priceDifference;
+        $priceDifference = $this->book->getPrice() * self::SIMILAR_PRICE_DIFFERENCE / 100;
+        $leftPriceLimit = $this->book->getPrice() - $priceDifference;
+        $rightPriceLimit = $this->book->getPrice() + $priceDifference;
         $similarBooks = [];
 
-       foreach ($book->getSimilarByPrice($leftPriceLimit, $rightPriceLimit)  as $item)
-       {
-           $this->tmpBook = $item;
+        foreach ($this->book->getSimilarByPrice($leftPriceLimit, $rightPriceLimit) as $item) {
+            $this->tmpBook = $item;
 
-           if($this->tmpBook->getGenreId() == $book->getGenreId()) {
-               $similarBooks[] = $item;
-           }
-       }
+            if ($this->tmpBook->getGenreId() == $this->book->getGenreId()) {
+                $similarBooks[] = $item;
+            }
+        }
 
         return response()->json(['book' => $book, 'similarBooks' => $similarBooks]);
     }

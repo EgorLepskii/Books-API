@@ -27,19 +27,16 @@ class UpdateBookRequest extends FormRequest implements Constants
     {
         $minFieldLen = self::MIN_FIELD_LENGTH;
         $maxFieldLen = self::MAX_FIELD_LENGTH;
-        /* $minAnnotationNameLen = self::MIN_ANNOTATION_LENGTH;
-        $maxAnnotationNameLen = self::MAX_ANNOTATION_LEN;
-        $minAuthorsNameLen = self::MIN_AUTHORS_NAME_LENGTH;
-        $maxAuthorsNameLen = self::MAX_AUTHORS_NAME_LEN;*/
         $minBookPrice = self::MIN_BOOK_PRICE;
         $maxBookPrice = self::MAX_BOOK_PRICE;
 
         return [
-             'name' => "required|string|min:{$minFieldLen}|max:{$maxFieldLen}|unique:books",
+            'name' => "required|string|min:{$minFieldLen}|max:{$maxFieldLen}|unique:books",
             'annotation' => "required|string|min:{$minFieldLen}|max:{$maxFieldLen}",
             'authors' => "required|string|min:{$minFieldLen}|max:{$maxFieldLen}",
             'price' => "required|numeric|between:{$minBookPrice},{$maxBookPrice}",
-            'genreId' => 'required|integer|exists:genres,id'
+            'genreId' => 'required|integer|exists:genres,id',
+            'isHidden' => 'required|boolean'
 
         ];
 

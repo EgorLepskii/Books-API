@@ -16,9 +16,9 @@ class Genre extends Model
         ];
 
 
-    public function getId()
+    public function getId(): int
     {
-        return $this->id;
+        return $this->id ?? -1;
     }
 
     public function books(): hasMany
