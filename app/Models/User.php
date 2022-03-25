@@ -12,8 +12,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -26,12 +27,13 @@ class User extends Authenticatable implements JWTSubject
         'isAdmin'
     ];
 
+    /**
+     * @var string
+     */
     public $table = 'users';
+
     protected $isAdmin;
 
-    /**
-     * @return bool
-     */
     public function isAdmin(): bool
     {
         return $this->isAdmin ?? false;

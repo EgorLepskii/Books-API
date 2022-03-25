@@ -10,6 +10,9 @@ class Genre extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string[]
+     */
     public $fillable =
         [
            'name'

@@ -6,13 +6,15 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SearchRequest extends FormRequest
 {
+    /**
+     * @var string
+     */
     protected $redirectRoute = "bookPage.index";
+
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -20,9 +22,9 @@ class SearchRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array{name: string, authors: string, leftPrice: string, rightPrice: string}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'string',

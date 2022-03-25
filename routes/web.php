@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookPageController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ManageBooksController;
@@ -34,39 +33,49 @@ Route::get('/', [Controller::class, 'index'])->name('home.index');
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group([
+Route::group(
+    [
     'middleware' => 'api',
     'prefix' => 'auth'
-], function () {
-    Route::post('/login', [AuthController::class, 'login'])->name('user.login');
-    Route::post('/register', [AuthController::class, 'register'])->name('user.register');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('user.logout');
-    Route::post('/refresh', [AuthController::class, 'refresh'])->name('user.refresh');
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);
-});
+    ], function () {
+        Route::post('/login', [AuthController::class, 'login'])->name('user.login');
+        Route::post('/register', [AuthController::class, 'register'])->name('user.register');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('user.logout');
+        Route::post('/refresh', [AuthController::class, 'refresh'])->name('user.refresh');
+        Route::get('/user-profile', [AuthController::class, 'userProfile']);
+    }
+);
 
-Route::group([
+Route::group(
+    [
     'middleware' => 'admin',
     'prefix' => 'bookManage'
-], function () {
-    Route::post('/book', [ManageBooksController::class, 'store'])->name('manageBook.store');
-    Route::post('/book/{book}', [ManageBooksController::class, 'update'])->name('manageBook.update');
-});
+    ], function () {
+        Route::post('/book', [ManageBooksController::class, 'store'])->name('manageBook.store');
+        Route::post('/book/{book}', [ManageBooksController::class, 'update'])->name('manageBook.update');
+    }
+);
 
 
-Route::group([
+Route::group(
+    [
     'prefix' => 'bookPage'
-], function () {
-    Route::get('/book', [BookPageController::class, 'index'])->name('bookPage.index');
-    Route::get('/book/{book}', [BookPageController::class, 'show'])->name('bookPage.show');
-});
+    ], function () {
+        Route::get('/book', [BookPageController::class, 'index'])->name('bookPage.index');
+        Route::get('/book/{book}', [BookPageController::class, 'show'])->name('bookPage.show');
+    }
+);
 
-Route::group([
+Route::group(
+    [
     'prefix' => 'bookSearch'
-], function () {
-    Route::get('/book',
-        [SearchBookController::class, 'index'])->name('bookSearch.index');
-});
+    ], function () {
+        Route::get(
+            '/book',
+            [SearchBookController::class, 'index']
+        )->name('bookSearch.index');
+    }
+);
 
 
 

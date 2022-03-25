@@ -15,10 +15,25 @@ class Book extends Model implements Constants
     use HasFactory;
 
     public Builder $builder;
+
+    /**
+     * @var string
+     */
     public const INCORRECT_NAME_INPUT = "";
+
+    /**
+     * @var string
+     */
     public const INCORRECT_AUTHORS_INPUT = "";
+
+    /**
+     * @var int
+     */
     public const INCORRECT_PRICE_INPUT = -1;
 
+    /**
+     * @var string[]
+     */
     protected $fillable =
         [
             'name',
@@ -28,9 +43,6 @@ class Book extends Model implements Constants
             'price'
         ];
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name ?? "";
@@ -60,9 +72,6 @@ class Book extends Model implements Constants
         return $this->price ?? -1;
     }
 
-    /**
-     * @return HasOne
-     */
     public function genre(): hasOne
     {
         return $this->hasOne(Genre::class, 'id', 'genreId');
@@ -70,11 +79,8 @@ class Book extends Model implements Constants
 
     /**
      * Get similar books between price, except current book
-     * @param int $leftLimit
-     * @param int $rightLimit
-     * @return Book
      */
-    public function getSimilarByPrice(float $leftLimit, float $rightLimit)
+    public function getSimilarByPrice(float $leftLimit, float $rightLimit): self
     {
         $this->builder
             ->where('id', '!=', $this->getId())
@@ -86,9 +92,8 @@ class Book extends Model implements Constants
 
     /**
      * Get similar books, except current book
-     * @return Book
      */
-    public function getSimilarByGenre()
+    public function getSimilarByGenre(): self
     {
         $this->builder
             ->where('id', '!=', $this->getId())
@@ -98,28 +103,20 @@ class Book extends Model implements Constants
         return $this;
     }
 
-    /**
-     * @return void
-     */
-    public function setBuilder()
+    public function setBuilder(): void
     {
         $this->builder = Book::query();
     }
 
-    /**
-     * @return Builder
-     */
-    public function getBuilder()
+    public function getBuilder(): \Illuminate\Database\Eloquent\Builder
     {
         return $this->builder;
     }
 
     /**
      * Search book by name substring. Update builder for further requests
-     * @param string $name
-     * @return Book
      */
-    public function searchByName(string $name)
+    public function searchByName(string $name): self
     {
         if ($name == self::INCORRECT_NAME_INPUT) {
             return $this;
@@ -135,10 +132,10 @@ class Book extends Model implements Constants
 
     /**
      * Search book by name authors. Update builder for further requests
+     *
      * @param string $name
-     * @return Book
      */
-    public function searchByAuthors(string $authors)
+    public function searchByAuthors(string $authors): self
     {
         if ($authors == self::INCORRECT_AUTHORS_INPUT) {
             return $this;
@@ -155,11 +152,8 @@ class Book extends Model implements Constants
 
     /**
      * Search book by price substring. Update builder for further requests
-     * @param float $leftLimit
-     * @param float $rightLimit
-     * @return Book
      */
-    public function searchByPrice(float $leftLimit, float $rightLimit)
+    public function searchByPrice(float $leftLimit, float $rightLimit): self
     {
         if ($leftLimit == self::INCORRECT_PRICE_INPUT || $rightLimit == self::INCORRECT_PRICE_INPUT) {
             return $this;

@@ -31,8 +31,7 @@ class NameTest extends \Tests\TestCase implements Constants
 
         $this->genre = new Genre(['name' => $this->faker->name]);
         $this->genre->save();
-        $this->book = new Book
-        (
+        $this->book = new Book(
             [
                 'name' => self::TEST_NAME,
                 'annotation' => $this->faker->name,
@@ -50,8 +49,9 @@ class NameTest extends \Tests\TestCase implements Constants
 
     /**
      * Test books with names, that contains string of searching name
+     *
      * @dataProvider dataProvider
-     * @return void
+     * @return       void
      */
     public function test_similar_books_correct(array $data)
     {
@@ -122,8 +122,9 @@ class NameTest extends \Tests\TestCase implements Constants
 
     /**
      * Test books with names, that not contains string of searching name
+     *
      * @dataProvider dataProviderIncorrect
-     * @return void
+     * @return       void
      */
     public function test_similar_books_incorrect(array $data)
     {

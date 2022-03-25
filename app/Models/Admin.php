@@ -9,6 +9,9 @@ class Admin extends User
 {
     use HasFactory;
 
+    /**
+     * @var bool
+     */
     protected $isAdmin = true;
 
 

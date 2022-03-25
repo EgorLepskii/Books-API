@@ -17,32 +17,31 @@ class ManageBooksController extends Controller
 
     /**
      * Create new Book
-     * @param CreateBookRequest $request
-     * @return JsonResponse
      */
-    public function store(CreateBookRequest $request)
+    public function store(CreateBookRequest $createBookRequest): \Illuminate\Http\JsonResponse
     {
-        $input = $request->only(['name', 'annotation', 'authors', 'price', 'isHidden', 'genreId']);
+        $input = $createBookRequest->only(['name', 'annotation', 'authors', 'price', 'isHidden', 'genreId']);
         $this->book = new Book($input);
         $this->book->save();
 
-        return response()->json(['response' =>
-            Lang::get('manageBook.createSuccess', ['bookName' => $this->book->getName()])], 201);
+        return response()->json(
+            ['response' =>
+            Lang::get('manageBook.createSuccess', ['bookName' => $this->book->getName()])], 201
+        );
     }
 
     /**
      * Update existing book
-     * @param UpdateBookRequest $request
-     * @param Book $book
-     * @return JsonResponse
      */
-    public function update(UpdateBookRequest $request, Book $book)
+    public function update(UpdateBookRequest $updateBookRequest, Book $book): \Illuminate\Http\JsonResponse
     {
         $prevName = $book->getName();
-        $input = $request->only(['name', 'annotation', 'authors', 'price', 'isHidden', 'genreId']);
+        $input = $updateBookRequest->only(['name', 'annotation', 'authors', 'price', 'isHidden', 'genreId']);
         $book->update($input);
 
-        return response()->json(['response' =>
-            Lang::get('manageBook.updateSuccess', ['bookPrevName' => $prevName])], 201);
+        return response()->json(
+            ['response' =>
+            Lang::get('manageBook.updateSuccess', ['bookPrevName' => $prevName])], 201
+        );
     }
 }

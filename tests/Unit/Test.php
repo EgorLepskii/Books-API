@@ -15,7 +15,7 @@ class Test extends TestCase
      */
     public function test_example()
     {
-       $book = new Book(['name' => 'name']);
-       dd($book);
+        $book = new Book(['name' => 'name']);
+        dd($book);
     }
 }

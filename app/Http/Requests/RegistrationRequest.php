@@ -10,10 +10,8 @@ class RegistrationRequest extends FormRequest implements Constants
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,9 +19,9 @@ class RegistrationRequest extends FormRequest implements Constants
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array{name: string, email: string, password: string}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|string|between:2,100',
@@ -32,7 +30,10 @@ class RegistrationRequest extends FormRequest implements Constants
         ];
     }
 
-    public function messages()
+    /**
+     * @return array{required: mixed, string: mixed, min: mixed, max: mixed, unique: mixed, exists: mixed, int: mixed, between: mixed, confirmed: mixed}
+     */
+    public function messages(): array
     {
         return
             [
