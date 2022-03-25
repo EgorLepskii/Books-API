@@ -17,7 +17,7 @@ class AuthorsTest extends \Tests\TestCase implements Constants
     private $faker;
     private Genre $genre;
     private Book $book;
-    private const TEST_NAME = "TEST_NAME";
+    private const TEST_NAME = "iFUGpX1bCO29+A";
 
 
     /**
@@ -42,6 +42,7 @@ class AuthorsTest extends \Tests\TestCase implements Constants
                 'genreId' => $this->genre->getId()
             ]
         );
+        $this->book->setBuilder();
 
         $this->book->save();
     }
@@ -57,7 +58,8 @@ class AuthorsTest extends \Tests\TestCase implements Constants
         $data['genreId'] = $this->genre->getId();
         $book = new Book($data);
         $book->save();
-        $books = $this->book->searchByAuthors($this->book->authors);
+
+        $books = $this->book->searchByAuthors($this->book->authors)->getBuilder()->get();
         $this->assertEquals($books[0]->getName(), $book->getName());
     }
 
@@ -128,7 +130,7 @@ class AuthorsTest extends \Tests\TestCase implements Constants
         $book = new Book($data);
         $book->save();
 
-        $books = $this->book->searchByAuthors($this->book->authors);
+        $books = $this->book->searchByAuthors($this->book->authors)->getBuilder()->get();
         $this->assertEmpty($books->toArray());
     }
 

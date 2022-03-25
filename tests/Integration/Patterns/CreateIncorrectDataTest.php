@@ -48,6 +48,12 @@ class CreateIncorrectDataTest extends \Tests\TestCase implements Constants
 
     }
 
+    public function __construct(?string $name = null, array $data = [], $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+        $this->createApplication();
+    }
+
     /**
      * Test en and rus patterns for incorrect data
      * @dataProvider IncorrectDataProviderEn
@@ -71,25 +77,24 @@ class CreateIncorrectDataTest extends \Tests\TestCase implements Constants
     {
         Lang::setLocale('ru');
 
+
         $this->post(route('manageBook.store'), $data)->assertSessionHasErrors
         (
             $expectedSessionErrorFields
         );
+
 
     }
 
 
     public function IncorrectDataProviderEn()
     {
-        $this->setUp();
         Lang::setLocale('en');
-
         return $this->IncorrectDataProvider();
     }
 
     public function IncorrectDataProviderRu()
     {
-        $this->setUp();
         Lang::setLocale('ru');
         return $this->IncorrectDataProvider();
 
@@ -125,10 +130,10 @@ class CreateIncorrectDataTest extends \Tests\TestCase implements Constants
                 'incorrect_price_type' =>
                     [
                         [
-                            'name' => $this->faker->name,
-                            'annotation' => $this->faker->name,
-                            'authors' => $this->faker->name,
-                            'price' => $this->faker->name,
+                            'name' => $faker->name,
+                            'annotation' => $faker->name,
+                            'authors' => $faker->name,
+                            'price' => $faker->name,
                             'genreId' => 0,
 
                         ],
@@ -140,11 +145,11 @@ class CreateIncorrectDataTest extends \Tests\TestCase implements Constants
                 'incorrect_genre_type' =>
                     [
                         [
-                            'name' => $this->faker->name,
-                            'annotation' => $this->faker->name,
-                            'authors' => $this->faker->name,
-                            'price' => $this->faker->numberBetween(self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
-                            'genreId' => $this->faker->name,
+                            'name' => $faker->name,
+                            'annotation' => $faker->name,
+                            'authors' => $faker->name,
+                            'price' => $faker->numberBetween(self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
+                            'genreId' => $faker->name,
 
                         ],
                         [
@@ -155,11 +160,11 @@ class CreateIncorrectDataTest extends \Tests\TestCase implements Constants
                 'name_len_overflow' =>
                     [
                         [
-                            'name' => $this->faker->lexify(str_repeat('?', self::MAX_FIELD_LENGTH + 1)),
-                            'annotation' => $this->faker->name,
-                            'authors' => $this->faker->name,
-                            'price' => $this->faker->numberBetween(self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
-                            'genreId' => 1813,
+                            'name' => $faker->lexify(str_repeat('?', self::MAX_FIELD_LENGTH + 1)),
+                            'annotation' => $faker->name,
+                            'authors' => $faker->name,
+                            'price' => $faker->numberBetween(self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
+                            'genreId' => 0,
 
                         ],
                         [
@@ -169,11 +174,11 @@ class CreateIncorrectDataTest extends \Tests\TestCase implements Constants
                 'annotation_len_overflow' =>
                     [
                         [
-                            'name' => $this->faker->name,
-                            'annotation' => $this->faker->lexify(str_repeat('?', self::MAX_FIELD_LENGTH + 1)),
-                            'authors' => $this->faker->name,
-                            'price' => $this->faker->numberBetween(self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
-                            'genreId' => $this->genre->getId(),
+                            'name' => $faker->name,
+                            'annotation' => $faker->lexify(str_repeat('?', self::MAX_FIELD_LENGTH + 1)),
+                            'authors' => $faker->name,
+                            'price' => $faker->numberBetween(self::MIN_BOOK_PRICE, self::MAX_BOOK_PRICE),
+                            'genreId' => 0,
 
                         ],
                         [
@@ -183,11 +188,11 @@ class CreateIncorrectDataTest extends \Tests\TestCase implements Constants
                 'authors_len_overflow' =>
                     [
                         [
-                            'name' => $this->faker->name,
-                            'annotation' => $this->faker->name,
-                            'authors' => $this->faker->lexify(str_repeat('?', self::MAX_FIELD_LENGTH + 1)),
-                            'price' => $this->faker->numberBetween(self::MIN_BOOK_PRICE, self::MAX_AUTHORS_NAME_LEN),
-                            'genreId' => $this->genre->getId(),
+                            'name' => $faker->name,
+                            'annotation' => $faker->name,
+                            'authors' => $faker->lexify(str_repeat('?', self::MAX_FIELD_LENGTH + 1)),
+                            'price' => $faker->numberBetween(self::MIN_BOOK_PRICE, self::MAX_AUTHORS_NAME_LEN),
+                            'genreId' => 0,
 
                         ],
                         [

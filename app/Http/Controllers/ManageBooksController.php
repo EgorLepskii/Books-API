@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
-use http\Env\Response;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\View\View;
-use SebastianBergmann\Diff\Exception;
 
 /**
  * Controller for manage book.
@@ -21,7 +18,7 @@ class ManageBooksController extends Controller
     /**
      * Create new Book
      * @param CreateBookRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(CreateBookRequest $request)
     {
@@ -37,7 +34,7 @@ class ManageBooksController extends Controller
      * Update existing book
      * @param UpdateBookRequest $request
      * @param Book $book
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function update(UpdateBookRequest $request, Book $book)
     {

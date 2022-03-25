@@ -4,6 +4,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookPageController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ManageBooksController;
+use App\Http\Controllers\SearchBookController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -59,4 +60,14 @@ Route::group([
     Route::get('/book', [BookPageController::class, 'index'])->name('bookPage.index');
     Route::get('/book/{book}', [BookPageController::class, 'show'])->name('bookPage.show');
 });
+
+Route::group([
+    'prefix' => 'bookSearch'
+], function () {
+    Route::get('/book',
+        [SearchBookController::class, 'index'])->name('bookSearch.index');
+});
+
+
+
 

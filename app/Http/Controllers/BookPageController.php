@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\Genre;
-use Illuminate\Http\Request;
 
 class BookPageController extends Controller
 {
     private Book $book;
-    private Book $tmpBook;
     public const MAX_SHOW_PRODUCT_COUNT = 5;
     public const SIMILAR_PRICE_DIFFERENCE = 20;
 
@@ -21,9 +18,14 @@ class BookPageController extends Controller
     {
         $this->book = new Book();
         return response()
-            ->json(['books' => $this->book::query()
-                ->limit(self::MAX_SHOW_PRODUCT_COUNT)
-                ->orderByDesc('id')->get()]);
+            ->json
+            (
+                [
+                    'books' => $this->book::query()
+                        ->limit(self::MAX_SHOW_PRODUCT_COUNT)
+                        ->orderByDesc('id')->get()
+                ]
+            );
     }
 
     /**
@@ -34,18 +36,19 @@ class BookPageController extends Controller
     public function show(Book $book)
     {
         $this->book = $book;
+        $this->book->setBuilder();
         $priceDifference = $this->book->getPrice() * self::SIMILAR_PRICE_DIFFERENCE / 100;
         $leftPriceLimit = $this->book->getPrice() - $priceDifference;
         $rightPriceLimit = $this->book->getPrice() + $priceDifference;
-        $similarBooks = [];
 
-        foreach ($this->book->getSimilarByPrice($leftPriceLimit, $rightPriceLimit) as $item) {
-            $this->tmpBook = $item;
+        $similarBooks =
+            $this->book
+                ->getSimilarByPrice($leftPriceLimit, $rightPriceLimit)
+                ->getSimilarByGenre()
+                ->getBuilder()
+                ->orderByDesc('id')
+                ->get();
 
-            if ($this->tmpBook->getGenreId() == $this->book->getGenreId()) {
-                $similarBooks[] = $item;
-            }
-        }
 
         return response()->json(['book' => $book, 'similarBooks' => $similarBooks]);
     }

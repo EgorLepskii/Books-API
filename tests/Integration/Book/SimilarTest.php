@@ -39,6 +39,7 @@ class SimilarTest extends \Tests\TestCase implements Constants
             ]
         );
         $this->book->save();
+        $this->book->setBuilder();
     }
 
 
@@ -53,7 +54,7 @@ class SimilarTest extends \Tests\TestCase implements Constants
         $bookWithCorrectPrice = new Book
         (
             [
-                'name' => "TEST_ONE",
+                'name' => $this->faker->name,
                 'annotation' => $this->faker->name,
                 'authors' => $this->faker->name,
                 'price' => self::PRICE_FOR_TEST + 1,
@@ -87,7 +88,10 @@ class SimilarTest extends \Tests\TestCase implements Constants
         $bookWithIncorrectPriceLeft->save();
         $bookWithIncorrectPriceRight->save();
 
-        $similarBooks = $this->book->getSimilarByPrice(self::LEFT_LIMIT, self::RIGHT_LIMIT);
+        $similarBooks = $this->book
+            ->getSimilarByPrice(self::LEFT_LIMIT, self::RIGHT_LIMIT)
+            ->getBuilder()
+            ->get();
 
 
         foreach ($similarBooks->toArray() as $item) {
@@ -138,8 +142,7 @@ class SimilarTest extends \Tests\TestCase implements Constants
 
         $correctBook->save();
         $incorrectBook->save();
-
-        $similarBooks = $this->book->getSimilarByGenre();
+        $similarBooks = $this->book->getSimilarByGenre()->getBuilder()->get();
 
         foreach ($similarBooks->toArray() as $item) {
             $this->assertNotEquals($item['name'], $incorrectBook->getName());

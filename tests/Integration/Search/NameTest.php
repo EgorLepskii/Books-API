@@ -17,7 +17,7 @@ class NameTest extends \Tests\TestCase implements Constants
     private $faker;
     private Genre $genre;
     private Book $book;
-    private const TEST_NAME = "TEST_NAME";
+    private const TEST_NAME = "iFUGpX1bCO29+A";
 
 
     /**
@@ -43,6 +43,7 @@ class NameTest extends \Tests\TestCase implements Constants
             ]
         );
 
+        $this->book->setBuilder();
         $this->book->save();
     }
 
@@ -58,7 +59,7 @@ class NameTest extends \Tests\TestCase implements Constants
         $book = new Book($data);
         $book->save();
 
-        $books = $this->book->searchByName($this->book->getName());
+        $books = $this->book->searchByName($this->book->getName())->getBuilder()->get();
         $this->assertEquals($books[0]->getName(), $book->getName());
     }
 
@@ -130,7 +131,7 @@ class NameTest extends \Tests\TestCase implements Constants
         $book = new Book($data);
         $book->save();
 
-        $books = $this->book->searchByName($this->book->getName());
+        $books = $this->book->searchByName($this->book->getName())->getBuilder()->get();
         $this->assertEmpty($books->toArray());
     }
 

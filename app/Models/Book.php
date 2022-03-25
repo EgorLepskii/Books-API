@@ -14,6 +14,11 @@ class Book extends Model implements Constants
 {
     use HasFactory;
 
+    public Builder $builder;
+    public const INCORRECT_NAME_INPUT = "";
+    public const INCORRECT_AUTHORS_INPUT = "";
+    public const INCORRECT_PRICE_INPUT = -1;
+
     protected $fillable =
         [
             'name',
@@ -67,76 +72,107 @@ class Book extends Model implements Constants
      * Get similar books between price, except current book
      * @param int $leftLimit
      * @param int $rightLimit
-     * @return Builder[]|Collection
+     * @return Book
      */
-    public function getSimilarByPrice(int $leftLimit, int $rightLimit)
+    public function getSimilarByPrice(float $leftLimit, float $rightLimit)
     {
-        return $this::query()
+        $this->builder
             ->where('id', '!=', $this->getId())
             ->whereBetween('price', [$leftLimit, $rightLimit])
-            ->limit(self::MAX_SELECT_COUNT)
-            ->orderByDesc('id')
-            ->get();
+            ->limit(self::MAX_SELECT_COUNT);
+
+        return $this;
     }
 
     /**
      * Get similar books, except current book
-     * @return Builder[]|Collection
+     * @return Book
      */
     public function getSimilarByGenre()
     {
-        return self::query()
+        $this->builder
             ->where('id', '!=', $this->getId())
             ->where('genreId', '=', $this->getGenreId())
-            ->limit(self::MAX_SELECT_COUNT)
-            ->orderByDesc('id')
-            ->get();
+            ->limit(self::MAX_SELECT_COUNT);
+
+        return $this;
     }
 
     /**
-     * Search book by name substring
+     * @return void
+     */
+    public function setBuilder()
+    {
+        $this->builder = Book::query();
+    }
+
+    /**
+     * @return Builder
+     */
+    public function getBuilder()
+    {
+        return $this->builder;
+    }
+
+    /**
+     * Search book by name substring. Update builder for further requests
      * @param string $name
-     * @return Builder[]|Collection
+     * @return Book
      */
     public function searchByName(string $name)
     {
+        if ($name == self::INCORRECT_NAME_INPUT) {
+            return $this;
+        }
 
-        return Book::query()
-            ->where('name','LIKE',"%".strtolower($name)."%")
-            ->where('id','!=', $this->getId())
-            ->limit(self::MAX_SELECT_COUNT)
-            ->orderByDesc('id')
-            ->get();
+        $this->builder
+            ->where('name', 'LIKE', "%" . $name . "%")
+            ->where('id', '!=', $this->getId())
+            ->limit(self::MAX_SELECT_COUNT);
+
+        return $this;
     }
 
     /**
-     * Search book by authors substring
+     * Search book by name authors. Update builder for further requests
      * @param string $name
-     * @return Builder[]|Collection
+     * @return Book
      */
     public function searchByAuthors(string $authors)
     {
-        return Book::query()
-            ->where('authors','LIKE',"%".strtolower($authors)."%")
-            ->where('id','!=', $this->getId())
-            ->limit(self::MAX_SELECT_COUNT)
-            ->orderByDesc('id')
-            ->get();
+        if ($authors == self::INCORRECT_AUTHORS_INPUT) {
+            return $this;
+        }
+
+        $this->builder
+            ->where('authors', 'LIKE', "%" . strtolower($authors) . "%")
+            ->where('id', '!=', $this->getId())
+            ->limit(self::MAX_SELECT_COUNT);
+
+        return $this;
+
     }
 
     /**
-     * Search book by  price range
-     * @param string $name
-     * @return Builder[]|Collection
+     * Search book by price substring. Update builder for further requests
+     * @param float $leftLimit
+     * @param float $rightLimit
+     * @return Book
      */
-    public function searchByPrice(int $leftLimit, int $rightLimit)
+    public function searchByPrice(float $leftLimit, float $rightLimit)
     {
-        return Book::query()
+        if ($leftLimit == self::INCORRECT_PRICE_INPUT || $rightLimit == self::INCORRECT_PRICE_INPUT) {
+            return $this;
+        }
+
+        $this->builder
             ->whereBetween('price', [$leftLimit, $rightLimit])
-            ->where('id','!=', $this->getId())
-            ->limit(self::MAX_SELECT_COUNT)
-            ->orderByDesc('id')
-            ->get();
+            ->where('id', '!=', $this->getId())
+            ->limit(self::MAX_SELECT_COUNT);
+
+
+        return $this;
+
     }
 
 }

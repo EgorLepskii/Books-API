@@ -17,7 +17,7 @@ class PriceTest extends \Tests\TestCase implements Constants
     private $faker;
     private Genre $genre;
     private Book $book;
-    private const PRICE_FOR_TESTS = 100;
+    private const PRICE_FOR_TESTS = 100.5;
     private const PRICE_DIFFERENCE = 30;
 
 
@@ -44,6 +44,7 @@ class PriceTest extends \Tests\TestCase implements Constants
             ]
         );
 
+        $this->book->setBuilder();
         $this->book->save();
     }
 
@@ -60,7 +61,7 @@ class PriceTest extends \Tests\TestCase implements Constants
         $leftPrice = self::PRICE_FOR_TESTS - self::PRICE_DIFFERENCE;
         $rightLimit = self::PRICE_FOR_TESTS + self::PRICE_DIFFERENCE;
 
-        $books = $this->book->searchByPrice($leftPrice, $rightLimit);
+        $books = $this->book->searchByPrice($leftPrice, $rightLimit)->getBuilder()->get();
 
         $flag = false;
 
@@ -122,7 +123,7 @@ class PriceTest extends \Tests\TestCase implements Constants
         $leftPrice = self::PRICE_FOR_TESTS - self::PRICE_DIFFERENCE;
         $rightLimit = self::PRICE_FOR_TESTS + self::PRICE_DIFFERENCE;
 
-        $books = $this->book->searchByPrice($leftPrice, $rightLimit);
+        $books = $this->book->searchByPrice($leftPrice, $rightLimit)->getBuilder()->get();
 
         $flag = true;
 
@@ -148,7 +149,7 @@ class PriceTest extends \Tests\TestCase implements Constants
                         'name' => $faker->name,
                         'annotation' => $faker->name,
                         'authors' => $faker->name,
-                        'price' => self::PRICE_FOR_TESTS - self::PRICE_DIFFERENCE - 1,
+                        'price' => self::PRICE_FOR_TESTS - self::PRICE_DIFFERENCE - 1.5,
                         'isHidden' => false,
                         'genreId' => 0
                     ]
@@ -160,7 +161,7 @@ class PriceTest extends \Tests\TestCase implements Constants
                         'name' => $faker->name,
                         'annotation' => $faker->name,
                         'authors' => $faker->name,
-                        'price' => self::PRICE_FOR_TESTS + self::PRICE_DIFFERENCE + 1,
+                        'price' => self::PRICE_FOR_TESTS + self::PRICE_DIFFERENCE + 1.5,
                         'isHidden' => false,
                         'genreId' => 0
                     ]
