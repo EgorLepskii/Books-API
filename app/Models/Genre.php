@@ -6,6 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+
+/**
+ * @OA\Schema (
+ *  @OA\Property(
+ *      property="name",
+ *      type="string"
+ *  ),
+ *     @OA\Property(
+ *      property="id",
+ *      type="integer"
+ *  )
+ * )
+ */
+
 class Genre extends Model
 {
     use HasFactory;

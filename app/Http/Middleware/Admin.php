@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Genre;
 use App\Models\User;
 use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
@@ -20,8 +21,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next): \Symfony\Component\HttpFoundation\Response
     {
-
-        $this->user = auth()->user() ?? new User(['name' => 'name', 'email' => 'email']);
+        $this->user = auth()->user() ?? new User(['isAdmin' => false]);
 
         if ($this->user->isAdmin()) {
             return $next($request);

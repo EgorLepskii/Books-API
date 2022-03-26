@@ -21,7 +21,6 @@ use App\Http\Controllers\AuthController;
 
 App::setLocale('en');
 
-Route::get('/', [Controller::class, 'index'])->name('home.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -35,46 +34,47 @@ Route::get('/', [Controller::class, 'index'])->name('home.index');
 */
 Route::group(
     [
-    'middleware' => 'api',
-    'prefix' => 'auth'
+        'middleware' => 'api',
+        'prefix' => 'auth'
     ], function () {
-        Route::post('/login', [AuthController::class, 'login'])->name('user.login');
-        Route::post('/register', [AuthController::class, 'register'])->name('user.register');
-        Route::post('/logout', [AuthController::class, 'logout'])->name('user.logout');
-        Route::post('/refresh', [AuthController::class, 'refresh'])->name('user.refresh');
-        Route::get('/user-profile', [AuthController::class, 'userProfile']);
-    }
+    Route::post('/login', [AuthController::class, 'login'])->name('user.login');
+    Route::get('/index', [AuthController::class, 'index'])->name('user.index');
+    Route::post('/register', [AuthController::class, 'register'])->name('user.register');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('user.logout');
+    Route::post('/refresh', [AuthController::class, 'refresh'])->name('user.refresh');
+}
 );
 
 Route::group(
     [
-    'middleware' => 'admin',
-    'prefix' => 'bookManage'
+        'middleware' => 'admin',
+        'prefix' => 'bookManage'
     ], function () {
-        Route::post('/book', [ManageBooksController::class, 'store'])->name('manageBook.store');
-        Route::post('/book/{book}', [ManageBooksController::class, 'update'])->name('manageBook.update');
-    }
+    Route::post('/book', [ManageBooksController::class, 'store'])->name('manageBook.store');
+    Route::post('/book/{book}', [ManageBooksController::class, 'update'])->name('manageBook.update');
+}
 );
 
 
 Route::group(
     [
-    'prefix' => 'bookPage'
+        'middleware' => 'api',
+        'prefix' => 'bookPage'
     ], function () {
-        Route::get('/book', [BookPageController::class, 'index'])->name('bookPage.index');
-        Route::get('/book/{book}', [BookPageController::class, 'show'])->name('bookPage.show');
-    }
+    Route::get('/book', [BookPageController::class, 'index'])->name('bookPage.index');
+    Route::get('/book/{book}', [BookPageController::class, 'show'])->name('bookPage.show');
+}
 );
 
 Route::group(
     [
-    'prefix' => 'bookSearch'
+        'prefix' => 'bookSearch'
     ], function () {
-        Route::get(
-            '/book',
-            [SearchBookController::class, 'index']
-        )->name('bookSearch.index');
-    }
+    Route::get(
+        '/book',
+        [SearchBookController::class, 'index']
+    )->name('bookSearch.index');
+}
 );
 
 

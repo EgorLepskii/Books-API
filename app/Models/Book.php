@@ -4,11 +4,44 @@ namespace App\Models;
 
 use Core\Constants;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use phpDocumentor\Reflection\Types\True_;
+
+
+/**
+ * @OA\Schema (
+ *  @OA\Property(
+ *      property="name",
+ *      type="string",
+ *       description="Book name(unique)"
+ *  ),
+ *  @OA\Property(
+ *      property="id",
+ *      type="integer",
+ *     description="Book id"
+ *
+ *  ),
+ *  @OA\Property(
+ *      property="genreId",
+ *      type="integer",
+ *     description="Book genre (hasOne relation)"
+ *
+ *  ),
+ *   @OA\Property(
+ *      property="builder",
+ *      type=" \Illuminate\Database\Eloquent\Builder"
+ *  ),
+ *     @OA\Property(
+ *      property="annotation",
+ *      type="string"
+ *  ),
+ *     @OA\Property(
+ *      property="authors",
+ *      type="string"
+ *  ),
+ * )
+ */
 
 class Book extends Model implements Constants
 {
@@ -40,7 +73,8 @@ class Book extends Model implements Constants
             'genreId',
             'annotation',
             'authors',
-            'price'
+            'price',
+            'isAdmin'
         ];
 
     public function getName(): string
@@ -108,7 +142,7 @@ class Book extends Model implements Constants
         $this->builder = Book::query();
     }
 
-    public function getBuilder(): \Illuminate\Database\Eloquent\Builder
+    public function getBuilder(): Builder
     {
         return $this->builder;
     }

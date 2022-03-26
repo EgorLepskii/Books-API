@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
@@ -23,10 +24,47 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
+
+
     /**
-     * Get a JWT via given credentials.
+     * @OA\Post(
+     *     path="/auth/login",
+     *     tags={"auth"},
+     *     summary="Login user",
+     *     security={
+     *     {"JWT_token":{}},
+
+*     },
+     *     @OA\RequestBody (
+     *     required=true,
+     *     @OA\JsonContent(ref="#/components/schemas/AuthLoginRequest")
+     *
+     * ),
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful login",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Incorrect input data",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     * )
      */
-    public function login(Request $request): \Illuminate\Http\JsonResponse
+    public function login(Request $request): JsonResponse
     {
 
         $validator = Validator::make(
@@ -47,11 +85,38 @@ class AuthController extends Controller
     }
 
     /**
-     * Register a User.
+     * @OA\Post(
+     *     path="/auth/register",
+     *     tags={"auth"},
+     *     summary="Register user",
+     *     security={
+     *     {"JWT_token":{}},
+
+     *     },
+     *     @OA\RequestBody (
+     *        required=true,
+     *        @OA\JsonContent(ref="#/components/schemas/AuthRegisterRequest")
+     *
+     *      ),
+     *
+     *     @OA\Response(
+     *         response=201,
+     *         description="User register success",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Incorrect input data",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     * )
      */
     public function register(Request $request): \Illuminate\Http\JsonResponse
     {
-
 
         $validator = Validator::make(
             $request->all(), [
@@ -82,7 +147,25 @@ class AuthController extends Controller
     }
 
     /**
-     * Log the user out (Invalidate the token).
+     * @OA\Post(
+     *     path="/auth/logout",
+     *     tags={"auth"},
+     *     summary="logout",
+     *     security={
+     *     {"JWT_token":{}},
+
+     *     },
+     *
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="User logout success",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *
+     * )
      */
     public function logout(): \Illuminate\Http\JsonResponse
     {
@@ -91,7 +174,25 @@ class AuthController extends Controller
     }
 
     /**
-     * Refresh a token.
+     * @OA\Post(
+     *     path="/auth/refresh",
+     *     tags={"auth"},
+     *     summary="Refresh JWT token",
+     *     security={
+     *     {"JWT_token":{}},
+
+     *     },
+     *
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="Toker refresh success",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *
+     * )
      */
     public function refresh(): \Illuminate\Http\JsonResponse
     {
@@ -99,7 +200,8 @@ class AuthController extends Controller
     }
 
     /**
-     * Get the token array structure.
+     * @param string $token
+     * @return JsonResponse
      */
     protected function createNewToken(string $token): \Illuminate\Http\JsonResponse
     {
@@ -107,7 +209,6 @@ class AuthController extends Controller
             [
             'access_token' => $token,
             'token_type' => 'bearer',
-            // 'expires_in' => auth()->factory()->getTTL() * 60,
             'expires_in' => time() + self::TOKEN_LIVE_TIME,
             'user' => auth()->user()
             ]

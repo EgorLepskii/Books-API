@@ -10,6 +10,42 @@ use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
+/**
+ * @OA\Schema (
+ *     @OA\Property(
+ *      property="id",
+ *      type="integer",
+ *      description="User id"
+ *  ),
+ *  @OA\Property(
+ *      property="name",
+ *      type="string",
+ *      description="User name"
+ *  ),
+ *  @OA\Property(
+ *      property="email",
+ *      type="string",
+ *      description="User email"
+ *  ),
+ *  @OA\Property(
+ *      property="password",
+ *      type="string",
+ *      description="User password"
+ *  ),
+ *   @OA\Property(
+ *      property="isAdmin",
+ *      type=" bool",
+ *
+ *  ),
+ *     @OA\Property(
+ *      property="table",
+ *      type="string",
+ *     description="Table, that contains current model"
+ *
+ *  )
+ * )
+ */
+
 class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens;
@@ -31,8 +67,6 @@ class User extends Authenticatable implements JWTSubject
      * @var string
      */
     public $table = 'users';
-
-    protected $isAdmin;
 
     public function isAdmin(): bool
     {

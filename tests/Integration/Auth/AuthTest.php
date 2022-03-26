@@ -80,6 +80,8 @@ class AuthTest extends \Tests\TestCase
             )->getContent()
         )->access_token;
 
+
+
         $tokenParts = explode('.', $refreshedToken);
 
         $refreshedTokenPayload = json_decode(base64_decode($tokenParts[1]));

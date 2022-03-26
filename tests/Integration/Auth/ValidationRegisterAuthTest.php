@@ -27,18 +27,15 @@ class ValidationRegisterAuthTest extends \Tests\TestCase
     public function testIncorrectDataRegistration(array $data): void
     {
         $this->post(route('user.register'), $data)->assertStatus(400);
-
         $user = new User();
         $user = $user::query()->where('email', '=', $data['email'])->first();
-
         $this->assertEmpty($user);
-
     }
 
 
     /**
-     * 
-     * 
+     *
+     *
      * @return array{empty_name: array<int, array{name: string, email: string, password: string, password_confirmation: string}>, empty_email: array<int, array{name: string, email: string, password: string, password_confirmation: string}>, empty_password: array<int, array{name: string, email: string, password: string, password_confirmation: string}>, passwords_confirm_error: array<int, array{name: string, email: string, password: string, password_confirmation: string}>}
      */
     public function incorrectRegisterDataProvider(): array
@@ -107,8 +104,8 @@ class ValidationRegisterAuthTest extends \Tests\TestCase
 
 
     /**
-     * 
-     * 
+     *
+     *
      * @return array{correct_data: array<int, array{name: string, email: string, password: string, password_confirmation: string}>}
      */
     public function correctRegisterDataProvider(): array

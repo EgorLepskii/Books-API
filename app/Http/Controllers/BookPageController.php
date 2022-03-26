@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Http\JsonResponse;
+
+
 
 class BookPageController extends Controller
 {
@@ -19,11 +22,20 @@ class BookPageController extends Controller
     public const SIMILAR_PRICE_DIFFERENCE = 20;
 
     /**
-     * Show books with MAX_SHOW_PRODUCT_COUNT limit
-     *
-     * @return \Illuminate\Http\JsonResponse|void
+     * @OA\Get(
+     *     path="/bookPage/book",
+     *     summary="Get list of books",
+     *     tags={"BookPage"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     * )
      */
-    public function index(): \Illuminate\Http\JsonResponse
+    public function index(): JsonResponse
     {
         $this->book = new Book();
         return response()
@@ -37,9 +49,34 @@ class BookPageController extends Controller
     }
 
     /**
-     * Show book and the similar books with the same genre
+     * @OA\Get(
+     *     path="/bookPage/book/{book}",
+     *     summary="Show book and the similar books with the same genre",
+     *     tags={"BookPage"},
+     *      @OA\Parameter(
+     *          name="book",
+     *          description="book id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *      @OA\Response(
+     *         response="404",
+     *         description="Book is not found",
+     *     )
+     * )
      */
-    public function show(Book $book): \Illuminate\Http\JsonResponse
+    public function show(Book $book): JsonResponse
     {
         $this->book = $book;
         $this->book->setBuilder();
