@@ -1,4 +1,4 @@
-name: Laravel CI Version3
+name: Laravel CI Version4
 on:
   pull_request:
     branches: [ master, staging ]
