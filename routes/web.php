@@ -46,7 +46,7 @@ Route::group(
 // test
 Route::group(
     [
-      //  'middleware' => 'admin',
+        'middleware' => 'admin',
         'prefix' => 'bookManage'
     ], function () {
     Route::post('/book', [ManageBooksController::class, 'store'])->name('manageBook.store');
