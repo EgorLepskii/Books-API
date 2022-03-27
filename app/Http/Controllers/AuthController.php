@@ -1,32 +1,74 @@
 <?php
+
 namespace App\Http\Controllers;
+
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    /**
+     * @var int
+     */
     public const  TOKEN_LIVE_TIME = 3600;
+
     /**
      * Create a new AuthController instance.
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
-    /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function login(Request $request){
 
-        $validator = Validator::make($request->all(), [
+    /**
+     * @OA\Post(
+     *     path="/auth/login",
+     *     tags={"auth"},
+     *     summary="Login user",
+     *
+
+     *
+     *     @OA\RequestBody (
+     *     required=true,
+     *     @OA\JsonContent(ref="#/components/schemas/AuthLoginRequest")
+     *
+     * ),
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful login",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Incorrect input data",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     * )
+     */
+    public function login(Request $request): JsonResponse
+    {
+        $validator = Validator::make(
+            $request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',
-        ]);
+            ]
+        );
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
@@ -34,69 +76,95 @@ class AuthController extends Controller
         if (!$token = auth()->attempt($validator->validated())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
         return $this->createNewToken($token);
     }
+
     /**
-     * Register a User.
+     * @OA\Post(
+     *     path="/auth/register",
+     *     tags={"auth"},
+     *     summary="Register user",
      *
-     * @return \Illuminate\Http\JsonResponse
+     *     @OA\RequestBody (
+     *        required=true,
+     *        @OA\JsonContent(ref="#/components/schemas/AuthRegisterRequest")
+     *
+     *      ),
+     *
+     *     @OA\Response(
+     *         response=201,
+     *         description="User register success",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Incorrect input data",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     * )
      */
-    public function register(Request $request) {
-
-
-        $validator = Validator::make($request->all(), [
+    public function register(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $validator = Validator::make(
+            $request->all(), [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
-        ]);
+            ]
+        );
 
         $password = $request->input('password') ?? "";
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
-        $user = User::create(array_merge(
-            $validator->validated(),
-            ['password' => bcrypt($password)]
-        ));
-        return response()->json([
+
+        $user = User::create(
+            array_merge(
+                $validator->validated(),
+                ['password' => bcrypt($password)]
+            )
+        );
+        return response()->json(
+            [
             'message' => 'User successfully registered',
             'user' => $user
-        ], 201);
+            ], 201
+        );
     }
 
-    /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function logout() {
+
+    public function logout(): JsonResponse
+    {
         auth()->logout();
         return response()->json(['message' => 'User successfully signed out']);
     }
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function refresh() {
+
+
+
+    public function refresh(): JsonResponse
+    {
         return $this->createNewToken(auth()->refresh());
     }
 
     /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @param string $token
+     * @return JsonResponse
      */
-    protected function createNewToken($token){
-        return response()->json([
+    protected function createNewToken(string $token): JsonResponse
+    {
+        return response()->json(
+            [
             'access_token' => $token,
             'token_type' => 'bearer',
-           // 'expires_in' => auth()->factory()->getTTL() * 60,
             'expires_in' => time() + self::TOKEN_LIVE_TIME,
             'user' => auth()->user()
-        ]);
+            ]
+        );
     }
 }

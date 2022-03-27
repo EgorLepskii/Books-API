@@ -1,0 +1,514 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Books API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8085",
+            "description": "Books api server"
+        }
+    ],
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Login user",
+                "operationId": "8cb7742ae98d0990acb2907c4e00bf24",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthLoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful login"
+                    },
+                    "422": {
+                        "description": "Incorrect input data"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Register user",
+                "operationId": "ed42f392010c301892e640067141676e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthRegisterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User register success"
+                    },
+                    "400": {
+                        "description": "Incorrect input data"
+                    }
+                }
+            }
+        },
+        "/bookPage/book": {
+            "get": {
+                "tags": [
+                    "BookPage"
+                ],
+                "summary": "Get list of books",
+                "operationId": "c92ec74c77aa923132c2a4096924d178",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/bookPage/book/{book}": {
+            "get": {
+                "tags": [
+                    "BookPage"
+                ],
+                "summary": "Show book and the similar books with the same genre",
+                "operationId": "54fd856c8da8c69a29f9f877c47aff7b",
+                "parameters": [
+                    {
+                        "name": "book",
+                        "in": "path",
+                        "description": "book id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "404": {
+                        "description": "Book is not found"
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "An example resource"
+                    }
+                }
+            }
+        },
+        "/bookManage/book": {
+            "post": {
+                "tags": [
+                    "bookManage"
+                ],
+                "summary": "Save book",
+                "operationId": "91935faa03cf325f57332a396141d676",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateBookRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "book created success"
+                    },
+                    "200": {
+                        "description": "Redirect to current page (reason:incorrect data)"
+                    },
+                    "403": {
+                        "description": "Access denied (User is not authorized or user is not an admin)"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/bookManage/book/{book}": {
+            "post": {
+                "tags": [
+                    "bookManage"
+                ],
+                "summary": "Update book",
+                "operationId": "54650890f211970ae89d7dbbbd787260",
+                "parameters": [
+                    {
+                        "name": "book",
+                        "in": "path",
+                        "description": "book id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateBookRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "book update success"
+                    },
+                    "404": {
+                        "description": "Book not found"
+                    },
+                    "403": {
+                        "description": "Access denied (User is not authorized or user is not an admin)"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/bookSearch/book": {
+            "get": {
+                "tags": [
+                    "bookSearch"
+                ],
+                "summary": "Get books by propertirs",
+                "operationId": "7007c9713a9568621e1c7f4b0c16a325",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "book name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "authors",
+                        "in": "query",
+                        "description": "book authors",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "leftPrice",
+                        "in": "query",
+                        "description": "book left price limit",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "rightPrice",
+                        "in": "query",
+                        "description": "book right price limit",
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Book": {
+                "properties": {
+                    "name": {
+                        "description": "Book name(unique)",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Book id",
+                        "type": "integer"
+                    },
+                    "genreId": {
+                        "description": "Book genre (hasOne relation)",
+                        "type": "integer"
+                    },
+                    "builder": {
+                        "type": " \\Illuminate\\Database\\Eloquent\\Builder"
+                    },
+                    "annotation": {
+                        "type": "string"
+                    },
+                    "authors": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Genre": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "properties": {
+                    "id": {
+                        "description": "User id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "User name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "User email",
+                        "type": "string"
+                    },
+                    "password": {
+                        "description": "User password",
+                        "type": "string"
+                    },
+                    "isAdmin": {
+                        "type": " bool"
+                    },
+                    "table": {
+                        "description": "Table, that contains current model",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "AuthLoginRequest": {
+                "description": "Auth request",
+                "properties": {
+                    "email": {
+                        "title": "Email",
+                        "description": "User account email",
+                        "format": "string",
+                        "example": "test@mail.ru"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "User account name",
+                        "format": "string",
+                        "example": "TEST_USER"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "User account password",
+                        "format": "string",
+                        "example": "qwerty"
+                    }
+                },
+                "type": "object"
+            },
+            "AuthRegisterRequest": {
+                "description": "Auth request",
+                "properties": {
+                    "email": {
+                        "title": "Email",
+                        "description": "User account email",
+                        "format": "string",
+                        "example": "test@mail.ru"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "User account name",
+                        "format": "string",
+                        "example": "TEST_USER"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "User account password",
+                        "format": "string",
+                        "example": "qwerty"
+                    },
+                    "password_confirmation": {
+                        "title": "password_confirmation",
+                        "description": "Confirmation passowods in forms",
+                        "format": "string",
+                        "example": "qwerty"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateBookRequest": {
+                "description": "Create book request",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Book  name",
+                        "format": "string",
+                        "example": "Shine"
+                    },
+                    "annotation": {
+                        "title": "annotation",
+                        "description": "Book annotation",
+                        "format": "string",
+                        "example": "annotation"
+                    },
+                    "authors": {
+                        "title": "Authors",
+                        "description": "Book authors",
+                        "format": "string",
+                        "example": "Authors"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "Book price",
+                        "format": "number",
+                        "example": "100.5"
+                    },
+                    "isHidden": {
+                        "title": "bool",
+                        "description": "Book is hidden or not",
+                        "format": "boolean",
+                        "example": "false"
+                    },
+                    "genreId": {
+                        "title": "genreId",
+                        "description": "Book genre id",
+                        "format": "int",
+                        "example": "1958"
+                    }
+                },
+                "type": "object"
+            },
+            "SearchBookRequest": {
+                "description": "Create book request",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Book name",
+                        "format": "string",
+                        "example": "Shine"
+                    },
+                    "authors": {
+                        "title": "annotation",
+                        "description": "Book annotation",
+                        "format": "string",
+                        "example": "annotation"
+                    },
+                    "leftPrice": {
+                        "title": "Authors",
+                        "description": "Book authors",
+                        "format": "string",
+                        "example": "Authors"
+                    },
+                    "rightPrice": {
+                        "title": "price",
+                        "description": "Book price",
+                        "format": "number",
+                        "example": "100.5"
+                    },
+                    "isHidden": {
+                        "title": "bool",
+                        "description": "Book is hidden or not",
+                        "format": "boolean",
+                        "example": "false"
+                    },
+                    "genreId": {
+                        "title": "genreId",
+                        "description": "Book genre id",
+                        "format": "int",
+                        "example": "1958"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateBookRequest": {
+                "description": "Create book request",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Book  name",
+                        "format": "string",
+                        "example": "Shine"
+                    },
+                    "annotation": {
+                        "title": "annotation",
+                        "description": "Book annotation",
+                        "format": "string",
+                        "example": "annotation"
+                    },
+                    "authors": {
+                        "title": "Authors",
+                        "description": "Book authors",
+                        "format": "string",
+                        "example": "Authors"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "Book price",
+                        "format": "number",
+                        "example": "100.5"
+                    },
+                    "isHidden": {
+                        "title": "bool",
+                        "description": "Book is hidden or not",
+                        "format": "boolean",
+                        "example": "false"
+                    },
+                    "genreId": {
+                        "title": "genreId",
+                        "description": "Book genre id",
+                        "format": "int",
+                        "example": "1958"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "JWT_token",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
