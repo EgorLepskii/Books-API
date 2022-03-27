@@ -16,7 +16,7 @@ class Books extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('genreId');
-            $table->foreign('genreId')->references('id')->on('books');
+            $table->foreign('genreId')->references('id')->on('genres');
             $table->string('name')->unique();
             $table->text('annotation');
             $table->string('authors');
