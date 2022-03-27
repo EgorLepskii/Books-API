@@ -2,12 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Genre;
 use App\Models\User;
 use Closure;
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
-use function PHPUnit\Framework\assertInstanceOf;
 
 class Admin
 {

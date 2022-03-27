@@ -19,7 +19,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-App::setLocale('en');
+App::setLocale('ru');
 
 
 /*
@@ -38,7 +38,6 @@ Route::group(
         'prefix' => 'auth'
     ], function () {
     Route::post('/login', [AuthController::class, 'login'])->name('user.login');
-    Route::get('/index', [AuthController::class, 'index'])->name('user.index');
     Route::post('/register', [AuthController::class, 'register'])->name('user.register');
     Route::post('/logout', [AuthController::class, 'logout'])->name('user.logout');
     Route::post('/refresh', [AuthController::class, 'refresh'])->name('user.refresh');

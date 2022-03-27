@@ -29,7 +29,7 @@ class SearchBookController extends Controller
      *
      *         @OA\Parameter(
      *          name="name",
-     *          description="book name",
+     *          description="Book name",
      *
      *          in="query",
      *          @OA\Schema(
@@ -72,7 +72,7 @@ class SearchBookController extends Controller
      *     )
      * )
      */
-    public function index(SearchBookRequest $searchRequest): \Illuminate\Http\JsonResponse
+    public function index(SearchBookRequest $searchRequest): JsonResponse
     {
         $this->name = $searchRequest->get('name') ?? Book::INCORRECT_NAME_INPUT;
         $this->authors = $searchRequest->get('authors') ?? Book::INCORRECT_AUTHORS_INPUT;
@@ -90,7 +90,7 @@ class SearchBookController extends Controller
             ->getBuilder()
             ->get();
 
-        return response()->json(['books' => $books], 200);
+        return response()->json(['books' => $books]);
     }
 
 

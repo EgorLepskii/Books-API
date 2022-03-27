@@ -38,12 +38,7 @@
                     "401": {
                         "description": "Unauthorized"
                     }
-                },
-                "security": [
-                    {
-                        "JWT_token": []
-                    }
-                ]
+                }
             }
         },
         "/auth/register": {
@@ -70,50 +65,7 @@
                     "400": {
                         "description": "Incorrect input data"
                     }
-                },
-                "security": [
-                    {
-                        "JWT_token": []
-                    }
-                ]
-            }
-        },
-        "/auth/logout": {
-            "post": {
-                "tags": [
-                    "auth"
-                ],
-                "summary": "logout",
-                "operationId": "0d29c740dc06d77602af8095bf4654cc",
-                "responses": {
-                    "200": {
-                        "description": "User logout success"
-                    }
-                },
-                "security": [
-                    {
-                        "JWT_token": []
-                    }
-                ]
-            }
-        },
-        "/auth/refresh": {
-            "post": {
-                "tags": [
-                    "auth"
-                ],
-                "summary": "Refresh JWT token",
-                "operationId": "f6c9683ed975ace7d035a09e6e2a9332",
-                "responses": {
-                    "200": {
-                        "description": "Toker refresh success"
-                    }
-                },
-                "security": [
-                    {
-                        "JWT_token": []
-                    }
-                ]
+                }
             }
         },
         "/bookPage/book": {

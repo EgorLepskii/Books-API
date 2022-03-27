@@ -171,6 +171,7 @@ class Book extends Model implements Constants
      */
     public function searchByAuthors(string $authors): self
     {
+
         if ($authors == self::INCORRECT_AUTHORS_INPUT) {
             return $this;
         }

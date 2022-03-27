@@ -60,9 +60,12 @@ class ManageBooksController extends Controller
         $this->book = new Book($input);
         $this->book->save();
 
-        return response()->json(
-            ['response' =>
-            Lang::get('manageBook.createSuccess', ['bookName' => $this->book->getName()])], 201
+        return response()->json
+        (
+            [
+                'response' =>
+                    Lang::get('manageBook.createSuccess', ['bookName' => $this->book->getName()])
+            ], 201
         );
     }
 
@@ -120,9 +123,12 @@ class ManageBooksController extends Controller
         $input = $updateBookRequest->only(['name', 'annotation', 'authors', 'price', 'isHidden', 'genreId']);
         $book->update($input);
 
-        return response()->json(
-            ['response' =>
-            Lang::get('manageBook.updateSuccess', ['bookPrevName' => $prevName])], 201
+        return response()->json
+        (
+            [
+                'response' =>
+                    Lang::get('manageBook.updateSuccess', ['bookPrevName' => $prevName])
+            ], 201
         );
     }
 }

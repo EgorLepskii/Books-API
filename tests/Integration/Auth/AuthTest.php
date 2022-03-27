@@ -54,11 +54,20 @@ class AuthTest extends \Tests\TestCase
 
 
     /**
-     * Test user logout
+     * Test user logout (user is authorized)
      */
-    public function testLogout(): void
+    public function testLogoutAuthorized(): void
     {
         $this->post(route('user.logout'))->assertSee('User successfully signed out');
+        $this->assertEmpty(Auth::user());
+    }
+
+    /**
+     * Test user logout (user is not authorized)
+     */
+    public function testLogoutNotAuthorized(): void
+    {
+        auth()->logout();
         $this->assertEmpty(Auth::user());
     }
 

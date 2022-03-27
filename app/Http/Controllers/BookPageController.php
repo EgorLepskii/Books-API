@@ -6,7 +6,6 @@ use App\Models\Book;
 use Illuminate\Http\JsonResponse;
 
 
-
 class BookPageController extends Controller
 {
     private Book $book;
@@ -39,7 +38,8 @@ class BookPageController extends Controller
     {
         $this->book = new Book();
         return response()
-            ->json(
+            ->json
+            (
                 [
                     'books' => $this->book::query()
                         ->limit(self::MAX_SHOW_PRODUCT_COUNT)
@@ -87,11 +87,11 @@ class BookPageController extends Controller
 
         $collection =
             $this->book
-            ->getSimilarByPrice($leftPriceLimit, $rightPriceLimit)
-            ->getSimilarByGenre()
-            ->getBuilder()
-            ->orderByDesc('id')
-            ->get();
+                ->getSimilarByPrice($leftPriceLimit, $rightPriceLimit)
+                ->getSimilarByGenre()
+                ->getBuilder()
+                ->orderByDesc('id')
+                ->get();
 
 
         return response()->json(['book' => $book, 'similarBooks' => $collection]);

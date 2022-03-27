@@ -24,17 +24,14 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
-
-
     /**
      * @OA\Post(
      *     path="/auth/login",
      *     tags={"auth"},
      *     summary="Login user",
-     *     security={
-     *     {"JWT_token":{}},
+     *
 
-*     },
+     *
      *     @OA\RequestBody (
      *     required=true,
      *     @OA\JsonContent(ref="#/components/schemas/AuthLoginRequest")
@@ -66,7 +63,6 @@ class AuthController extends Controller
      */
     public function login(Request $request): JsonResponse
     {
-
         $validator = Validator::make(
             $request->all(), [
             'email' => 'required|email',
@@ -89,10 +85,7 @@ class AuthController extends Controller
      *     path="/auth/register",
      *     tags={"auth"},
      *     summary="Register user",
-     *     security={
-     *     {"JWT_token":{}},
-
-     *     },
+     *
      *     @OA\RequestBody (
      *        required=true,
      *        @OA\JsonContent(ref="#/components/schemas/AuthRegisterRequest")
@@ -117,7 +110,6 @@ class AuthController extends Controller
      */
     public function register(Request $request): \Illuminate\Http\JsonResponse
     {
-
         $validator = Validator::make(
             $request->all(), [
             'name' => 'required|string|between:2,100',
@@ -146,55 +138,16 @@ class AuthController extends Controller
         );
     }
 
-    /**
-     * @OA\Post(
-     *     path="/auth/logout",
-     *     tags={"auth"},
-     *     summary="logout",
-     *     security={
-     *     {"JWT_token":{}},
 
-     *     },
-     *
-     *
-     *     @OA\Response(
-     *         response=200,
-     *         description="User logout success",
-     *         @OA\Schema(
-     *             type="JsonResponse",
-     *         ),
-     *     ),
-     *
-     * )
-     */
-    public function logout(): \Illuminate\Http\JsonResponse
+    public function logout(): JsonResponse
     {
         auth()->logout();
         return response()->json(['message' => 'User successfully signed out']);
     }
 
-    /**
-     * @OA\Post(
-     *     path="/auth/refresh",
-     *     tags={"auth"},
-     *     summary="Refresh JWT token",
-     *     security={
-     *     {"JWT_token":{}},
 
-     *     },
-     *
-     *
-     *     @OA\Response(
-     *         response=200,
-     *         description="Toker refresh success",
-     *         @OA\Schema(
-     *             type="JsonResponse",
-     *         ),
-     *     ),
-     *
-     * )
-     */
-    public function refresh(): \Illuminate\Http\JsonResponse
+
+    public function refresh(): JsonResponse
     {
         return $this->createNewToken(auth()->refresh());
     }
@@ -203,7 +156,7 @@ class AuthController extends Controller
      * @param string $token
      * @return JsonResponse
      */
-    protected function createNewToken(string $token): \Illuminate\Http\JsonResponse
+    protected function createNewToken(string $token): JsonResponse
     {
         return response()->json(
             [
