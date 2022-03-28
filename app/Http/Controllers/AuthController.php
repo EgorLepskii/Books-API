@@ -109,7 +109,7 @@ class AuthController extends Controller
      *     ),
      * )
      */
-    public function register(Request $request): \Illuminate\Http\JsonResponse
+    public function register(Request $request): JsonResponse
     {
         $validator = Validator::make(
             $request->all(), [

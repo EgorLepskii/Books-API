@@ -7,6 +7,7 @@ use App\Http\Controllers\SearchBookController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use L5Swagger\Http\Controllers\SwaggerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,7 @@ Route::group(
 );
 
 Route::post('/get-csrf-token', [Controller::class, 'getCSRFToken'])->name('csrf.get');
+
 
 
 Route::group(

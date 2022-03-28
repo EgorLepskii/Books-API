@@ -31,7 +31,7 @@ use Illuminate\Routing\Controller as BaseController;
  *
  * @OA\Server (
  *   description="Books api server",
- *     url="http://localhost:8085"
+ *     url="http://localhost:8080"
  *
  * )
  */
