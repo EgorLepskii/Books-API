@@ -56,34 +56,31 @@ class AuthTest extends \Tests\TestCase
     /**
      * Test user logout (user is not authorized)
      */
-   /* public function testLogoutNotAuthorized(): void
+    public function testLogoutNotAuthorized(): void
     {
         $this->withoutMiddleware(VerifyCsrfToken::class);
         auth()->logout();
         $this->post(route('user.logout'))->assertStatus(403);
-    }*/
+    }
 
 
     /**
      * Test user logout (user is authorized)
      */
-    /*public function testLogoutAuthorized(): void
+    public function testLogoutAuthorized(): void
     {
         $this->withoutMiddleware(VerifyCsrfToken::class);
         auth()->login($this->user);
         $this->post(route('user.logout'))->assertStatus(200);
         $this->assertEmpty(auth()->user());
-    }*/
-
-
-
+    }
 
     /**
      * Test refresh token
      * Assert, that expiration time of refreshed token
      * will be equals current time plus constant TOKEN_LIVE_TIME
      */
-    /*public function testRefreshToken(): void
+    public function testRefreshToken(): void
     {
         $this->withoutMiddleware(VerifyCsrfToken::class);
         $refreshedToken = json_decode(
@@ -99,7 +96,7 @@ class AuthTest extends \Tests\TestCase
 
         $this->assertNotEquals($this->token, $refreshedToken);
 
-    }*/
+    }
 
     protected function tearDown(): void
     {
