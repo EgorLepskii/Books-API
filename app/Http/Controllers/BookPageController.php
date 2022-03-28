@@ -86,11 +86,11 @@ class BookPageController extends Controller
 
         $collection =
             $this->book
-            ->getSimilarByPrice($leftPriceLimit, $rightPriceLimit)
-            ->getSimilarByGenre()
-            ->getBuilder()
-            ->orderByDesc('id')
-            ->get();
+                ->getSimilarByPrice($leftPriceLimit, $rightPriceLimit)
+                ->getSimilarByGenre()
+                ->getBuilder()
+                ->orderByDesc('id')
+                ->get();
 
 
         return response()->json(['book' => $book, 'similarBooks' => $collection]);

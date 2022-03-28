@@ -20,6 +20,7 @@ use L5Swagger\Http\Controllers\SwaggerController;
 |
 */
 
+// Change lang
 App::setLocale('ru');
 
 

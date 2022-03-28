@@ -64,8 +64,8 @@ class AuthController extends Controller
     {
         $validator = Validator::make(
             $request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
+                'email' => 'required|email',
+                'password' => 'required|string|min:6',
             ]
         );
         if ($validator->fails()) {
@@ -111,9 +111,9 @@ class AuthController extends Controller
     {
         $validator = Validator::make(
             $request->all(), [
-            'name' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|confirmed|min:6',
+                'name' => 'required|string|between:2,100',
+                'email' => 'required|string|email|max:100|unique:users',
+                'password' => 'required|string|confirmed|min:6',
             ]
         );
 
@@ -131,8 +131,8 @@ class AuthController extends Controller
         );
         return response()->json(
             [
-            'message' => 'User successfully registered',
-            'user' => $user
+                'message' => 'User successfully registered',
+                'user' => $user
             ], 201
         );
     }
@@ -207,17 +207,17 @@ class AuthController extends Controller
     }
 
     /**
-     * @param  string $token
+     * @param string $token
      * @return JsonResponse
      */
     protected function createNewToken(string $token): JsonResponse
     {
         return response()->json(
             [
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => time() + self::TOKEN_LIVE_TIME,
-            'user' => auth()->user()
+                'access_token' => $token,
+                'token_type' => 'bearer',
+                'expires_in' => time() + self::TOKEN_LIVE_TIME,
+                'user' => auth()->user()
             ]
         );
     }
