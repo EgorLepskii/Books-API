@@ -81,7 +81,7 @@ class CreateIncorrectDataTest extends \Tests\TestCase implements \Core\Constants
      */
     public function testIncorrectDataRu(array $data, array $expectedSessionErrorFields): void
     {
-       Lang::setLocale('ru');
+        Lang::setLocale('ru');
 
         $this->post(\route('manageBook.store'), $data)->assertSessionHasErrors(
             $expectedSessionErrorFields

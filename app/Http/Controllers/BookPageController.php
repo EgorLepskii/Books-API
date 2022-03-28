@@ -25,10 +25,10 @@ class BookPageController extends Controller
      *     path="/bookPage/book",
      *     summary="Get list of books",
      *     tags={"BookPage"},
-     *     @OA\Response(
+     * @OA\Response(
      *         response=200,
      *         description="successful operation",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
@@ -38,8 +38,7 @@ class BookPageController extends Controller
     {
         $this->book = new Book();
         return response()
-            ->json
-            (
+            ->json(
                 [
                     'books' => $this->book::query()
                         ->limit(self::MAX_SHOW_PRODUCT_COUNT)
@@ -53,24 +52,24 @@ class BookPageController extends Controller
      *     path="/bookPage/book/{book}",
      *     summary="Show book and the similar books with the same genre",
      *     tags={"BookPage"},
-     *      @OA\Parameter(
+     * @OA\Parameter(
      *          name="book",
      *          description="book id",
      *          required=true,
      *          in="path",
-     *          @OA\Schema(
+     * @OA\Schema(
      *              type="integer"
      *          )
      *      ),
      *
-     *     @OA\Response(
+     * @OA\Response(
      *         response=200,
      *         description="successful operation",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
-     *      @OA\Response(
+     * @OA\Response(
      *         response="404",
      *         description="Book is not found",
      *     )
@@ -87,11 +86,11 @@ class BookPageController extends Controller
 
         $collection =
             $this->book
-                ->getSimilarByPrice($leftPriceLimit, $rightPriceLimit)
-                ->getSimilarByGenre()
-                ->getBuilder()
-                ->orderByDesc('id')
-                ->get();
+            ->getSimilarByPrice($leftPriceLimit, $rightPriceLimit)
+            ->getSimilarByGenre()
+            ->getBuilder()
+            ->orderByDesc('id')
+            ->get();
 
 
         return response()->json(['book' => $book, 'similarBooks' => $collection]);

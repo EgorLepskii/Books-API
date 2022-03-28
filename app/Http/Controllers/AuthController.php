@@ -31,32 +31,30 @@ class AuthController extends Controller
      *     tags={"auth"},
      *     summary="Login user",
      *
-
-     *
-     *     @OA\RequestBody (
+     * @OA\RequestBody  (
      *     required=true,
-     *     @OA\JsonContent(ref="#/components/schemas/AuthLoginRequest")
+     * @OA\JsonContent(ref="#/components/schemas/AuthLoginRequest")
      *
      * ),
      *
-     *     @OA\Response(
+     * @OA\Response(
      *         response=200,
      *         description="successful login",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
-     *     @OA\Response(
+     * @OA\Response(
      *         response=422,
      *         description="Incorrect input data",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
-     *     @OA\Response(
+     * @OA\Response(
      *         response=401,
      *         description="Unauthorized",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
@@ -87,23 +85,23 @@ class AuthController extends Controller
      *     tags={"auth"},
      *     summary="Register user",
      *
-     *     @OA\RequestBody (
+     * @OA\RequestBody                                                 (
      *        required=true,
-     *        @OA\JsonContent(ref="#/components/schemas/AuthRegisterRequest")
+     * @OA\JsonContent(ref="#/components/schemas/AuthRegisterRequest")
      *
      *      ),
      *
-     *     @OA\Response(
+     * @OA\Response(
      *         response=201,
      *         description="User register success",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
-     *     @OA\Response(
+     * @OA\Response(
      *         response=400,
      *         description="Incorrect input data",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
@@ -150,18 +148,17 @@ class AuthController extends Controller
      *
      *     security={{ "apiAuth": {} }},
      *
-     *
-     *     @OA\Response(
+     * @OA\Response(
      *         response=200,
      *         description="User logout success",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
-     *     @OA\Response(
+     * @OA\Response(
      *         response=403,
      *         description="Already inauthorized",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
@@ -187,18 +184,17 @@ class AuthController extends Controller
      *
      *     security={{ "apiAuth": {} }},
      *
-     *
-     *     @OA\Response(
+     * @OA\Response(
      *         response=200,
      *         description="Token refresh success",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
-     *     @OA\Response(
+     * @OA\Response(
      *         response=403,
      *         description="Unauthorized",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
@@ -211,7 +207,7 @@ class AuthController extends Controller
     }
 
     /**
-     * @param string $token
+     * @param  string $token
      * @return JsonResponse
      */
     protected function createNewToken(string $token): JsonResponse

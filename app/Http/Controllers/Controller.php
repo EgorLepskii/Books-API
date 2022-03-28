@@ -16,7 +16,7 @@ use Illuminate\Routing\Controller as BaseController;
  * )
  * @OA\Get(
  *     path="/",
- *     @OA\Response(response="200", description="An example resource")
+ * @OA\Response(response="200", description="An example resource")
  * )
  *
  * @OA\SecurityScheme(

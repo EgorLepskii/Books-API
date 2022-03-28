@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 /**
- * @OA\Schema (
- *  @OA\Property(
+ * @OA\Schema    (
+ * @OA\Property(
  *      property="name",
  *      type="string"
  *  ),
- *     @OA\Property(
+ * @OA\Property(
  *      property="id",
  *      type="integer"
  *  )

@@ -14,8 +14,8 @@ class Authenticate extends Middleware
 {
 
     /**
-     * @param Request $request
-     * @param Closure $next
+     * @param  Request $request
+     * @param  Closure $next
      * @return Application|ResponseFactory|Response|mixed
      */
     public function handle($request, Closure $next, ...$guards)

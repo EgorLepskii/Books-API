@@ -11,33 +11,33 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
 /**
- * @OA\Schema (
- *     @OA\Property(
+ * @OA\Schema    (
+ * @OA\Property(
  *      property="id",
  *      type="integer",
  *      description="User id"
  *  ),
- *  @OA\Property(
+ * @OA\Property(
  *      property="name",
  *      type="string",
  *      description="User name"
  *  ),
- *  @OA\Property(
+ * @OA\Property(
  *      property="email",
  *      type="string",
  *      description="User email"
  *  ),
- *  @OA\Property(
+ * @OA\Property(
  *      property="password",
  *      type="string",
  *      description="User password"
  *  ),
- *   @OA\Property(
+ * @OA\Property(
  *      property="isAdmin",
  *      type=" bool",
  *
  *  ),
- *     @OA\Property(
+ * @OA\Property(
  *      property="table",
  *      type="string",
  *     description="Table, that contains current model"

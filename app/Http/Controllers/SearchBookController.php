@@ -25,21 +25,19 @@ class SearchBookController extends Controller
      *     summary="Get books by propertirs",
      *     tags={"bookSearch"},
      *
-     *
-     *
-     *         @OA\Parameter(
+     * @OA\Parameter(
      *          name="name",
      *          description="Book name",
      *
      *          in="query",
-     *          @OA\Schema(
+     * @OA\Schema(
      *              type="string"
      *          )
      *      ),@OA\Parameter(
      *          name="authors",
      *          description="book authors",
      *          in="query",
-     *          @OA\Schema(
+     * @OA\Schema(
      *              type="string"
      *          )
      *      ),@OA\Parameter(
@@ -47,7 +45,7 @@ class SearchBookController extends Controller
      *          description="book left price limit",
      *
      *          in="query",
-     *          @OA\Schema(
+     * @OA\Schema(
      *              type="number"
      *          )
      *      ),@OA\Parameter(
@@ -55,15 +53,15 @@ class SearchBookController extends Controller
      *          description="book right price limit",
      *
      *          in="query",
-     *          @OA\Schema(
+     * @OA\Schema(
      *              type="number"
      *          )
      *      ),
      *
-     *      @OA\Response(
+     * @OA\Response(
      *         response=200,
      *         description="success",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),

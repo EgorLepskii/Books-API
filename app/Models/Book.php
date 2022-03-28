@@ -10,33 +10,33 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 /**
- * @OA\Schema (
- *  @OA\Property(
+ * @OA\Schema    (
+ * @OA\Property(
  *      property="name",
  *      type="string",
  *       description="Book name(unique)"
  *  ),
- *  @OA\Property(
+ * @OA\Property(
  *      property="id",
  *      type="integer",
  *     description="Book id"
  *
  *  ),
- *  @OA\Property(
+ * @OA\Property(
  *      property="genreId",
  *      type="integer",
  *     description="Book genre (hasOne relation)"
  *
  *  ),
- *   @OA\Property(
+ * @OA\Property(
  *      property="builder",
  *      type=" \Illuminate\Database\Eloquent\Builder"
  *  ),
- *     @OA\Property(
+ * @OA\Property(
  *      property="annotation",
  *      type="string"
  *  ),
- *     @OA\Property(
+ * @OA\Property(
  *      property="authors",
  *      type="string"
  *  ),

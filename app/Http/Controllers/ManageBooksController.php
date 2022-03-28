@@ -20,33 +20,32 @@ class ManageBooksController extends Controller
      *     summary="Save book",
      *     tags={"bookManage"},
      *
-     *     @OA\RequestBody (
+     * @OA\RequestBody                                               (
      *     required=true,
-     *     @OA\JsonContent(ref="#/components/schemas/CreateBookRequest")
+     * @OA\JsonContent(ref="#/components/schemas/CreateBookRequest")
      *
      * ),
      *
      *     security={{ "apiAuth": {} }},
      *
-     *
-     *     @OA\Response(
+     * @OA\Response(
      *         response=201,
      *         description="book created success",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
-     *     @OA\Response(
+     * @OA\Response(
      *         response=200,
      *         description="Redirect to current page (reason:incorrect data)",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
-     *     @OA\Response(
+     * @OA\Response(
      *         response=403,
      *         description="Access denied (User is not authorized or user is not an admin)",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *
@@ -60,8 +59,7 @@ class ManageBooksController extends Controller
         $this->book = new Book($input);
         $this->book->save();
 
-        return response()->json
-        (
+        return response()->json(
             [
                 'response' =>
                     Lang::get('manageBook.createSuccess', ['bookName' => $this->book->getName()])
@@ -74,42 +72,41 @@ class ManageBooksController extends Controller
      *     path="/bookManage/book/{book}",
      *     summary="Update book",
      *     tags={"bookManage"},
-     *     @OA\Parameter(
+     * @OA\Parameter(
      *          name="book",
      *          description="book id",
      *          required=true,
      *          in="path",
-     *          @OA\Schema(
+     * @OA\Schema(
      *              type="integer"
      *          )
      *      ),
-     *     @OA\RequestBody (
+     * @OA\RequestBody                                               (
      *     required=true,
-     *     @OA\JsonContent(ref="#/components/schemas/UpdateBookRequest")
+     * @OA\JsonContent(ref="#/components/schemas/UpdateBookRequest")
      *
      * ),
      *
      *     security={{ "apiAuth": {} }},
      *
-     *
-     *     @OA\Response(
+     * @OA\Response(
      *         response=201,
      *         description="book update success",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
-     *     @OA\Response(
+     * @OA\Response(
      *         response=404,
      *         description="Book not found",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *     ),
-     *     @OA\Response(
+     * @OA\Response(
      *         response=403,
      *         description="Access denied (User is not authorized or user is not an admin)",
-     *         @OA\Schema(
+     * @OA\Schema(
      *             type="JsonResponse",
      *         ),
      *
@@ -123,8 +120,7 @@ class ManageBooksController extends Controller
         $input = $updateBookRequest->only(['name', 'annotation', 'authors', 'price', 'isHidden', 'genreId']);
         $book->update($input);
 
-        return response()->json
-        (
+        return response()->json(
             [
                 'response' =>
                     Lang::get('manageBook.updateSuccess', ['bookPrevName' => $prevName])
