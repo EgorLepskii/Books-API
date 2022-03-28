@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -139,14 +140,71 @@ class AuthController extends Controller
     }
 
 
+    /**
+     * @OA\Post(
+     *     path="/auth/logout",
+     *     summary="User logout",
+     *     tags={"auth"},
+     *
+     *
+     *
+     *     security={{ "apiAuth": {} }},
+     *
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="User logout success",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Already inauthorized",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *
+     *
+     *
+     *     )
+     * )
+     */
     public function logout(): JsonResponse
     {
         auth()->logout();
-        return response()->json(['message' => 'User successfully signed out']);
+        return response()->json(['message' => Lang::get('auth.logoutMessage')]);
     }
 
-
-
+    /**
+     * @OA\Post(
+     *     path="/auth/refresh",
+     *     summary="Refresh jwt token",
+     *     tags={"auth"},
+     *
+     *
+     *
+     *     security={{ "apiAuth": {} }},
+     *
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="Token refresh success",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Unauthorized",
+     *         @OA\Schema(
+     *             type="JsonResponse",
+     *         ),
+     *     ),
+     *     )
+     * )
+     */
     public function refresh(): JsonResponse
     {
         return $this->createNewToken(auth()->refresh());

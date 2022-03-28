@@ -5,24 +5,26 @@ namespace App\Http\Middleware;
 use App\Models\User;
 use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
-class Authenticate
+class Authenticate extends Middleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse) $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-    public function handle(Request $request, Closure $next): \Symfony\Component\HttpFoundation\Response
-    {
 
+    /**
+     * @param Request $request
+     * @param Closure $next
+     * @return Application|ResponseFactory|Response|mixed
+     */
+    public function handle($request, Closure $next, ...$guards)
+    {
         if (auth()->user()) {
             return $next($request);
         }
 
-        return response('', 403);
+        return response('Unauthorized', 403);
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace Tests\Integration\BookManage;
 
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\Admin;
 use App\Models\Book;
 use App\Models\Genre;
@@ -16,6 +17,7 @@ use function route;
 
 class ValidationUpdateTest extends \Tests\TestCase implements Constants
 {
+
 
     private $faker;
 
@@ -51,6 +53,8 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
      */
     public function testCorrectData(array $data): void
     {
+        $this->withoutMiddleware(VerifyCsrfToken::class);
+
         if (!isset($data['genreId'])) {
             $genre = new Genre(['name' => $this->faker->name]);
             $genre->save();
@@ -116,6 +120,8 @@ class ValidationUpdateTest extends \Tests\TestCase implements Constants
      */
     public function testIncorrectData(array $incorrectData): void
     {
+        $this->withoutMiddleware(VerifyCsrfToken::class);
+
         $genre = new Genre(['name' => $this->faker->name]);
         $genre->save();
 

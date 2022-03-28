@@ -2,11 +2,13 @@
 
 namespace Tests\Integration\BookManage;
 
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\User;
 use Core\Constants;
 use Faker\Factory;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\DB;
 use function bcrypt;
 use function route;
@@ -28,6 +30,8 @@ class UpdateTest extends \Tests\TestCase implements Constants
      */
     public function testAdminAccess(): void
     {
+        $this->withoutMiddleware(VerifyCsrfToken::class);
+
         $user = new User(
             [
                 'name' => $this->faker->name,

@@ -4,11 +4,14 @@ namespace Tests\Integration\Auth;
 
 use App\Models\User;
 use Faker\Factory;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\DB;
 use function route;
 
 class ValidationRegisterAuthTest extends \Tests\TestCase
 {
+    use WithoutMiddleware;
+
     protected function setUp(): void
     {
         parent::setUp();

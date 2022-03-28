@@ -43,7 +43,10 @@ Route::group(
     Route::post('/refresh', [AuthController::class, 'refresh'])->name('user.refresh');
 }
 );
-// 12334343434
+
+Route::post('/get-csrf-token', [Controller::class, 'getCSRFToken'])->name('csrf.get');
+
+
 Route::group(
     [
         'middleware' => 'admin',

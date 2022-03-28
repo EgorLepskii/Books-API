@@ -7,6 +7,7 @@ use App\Models\Genre;
 use App\Models\User;
 use Core\Constants;
 use Faker\Factory;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\DB;
 use function bcrypt;
 use function route;

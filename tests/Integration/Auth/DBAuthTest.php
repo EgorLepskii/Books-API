@@ -2,11 +2,14 @@
 
 namespace Tests\Integration\Auth;
 
+use App\Http\Middleware\VerifyCsrfToken;
 use Faker\Factory;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\DB;
 
 class DBAuthTest extends \Tests\TestCase
 {
+    use WithoutMiddleware;
 
     public \Faker\Generator $faker;
     protected function setUp(): void
@@ -16,6 +19,8 @@ class DBAuthTest extends \Tests\TestCase
         DB::beginTransaction();
 
     }
+
+
 
 
     protected function tearDown(): void

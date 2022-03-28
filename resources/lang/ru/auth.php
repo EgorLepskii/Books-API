@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'logoutMessage' => 'User logout success'
+    'failed' => 'Такой записи не существует',
+    'password' => 'Пароль некорректный',
+    'throttle' => 'Слишком много попытко авторизации. Пожалуйста, повторите попытку через :seconds секунд.',
+    'logoutMessage' => 'Произведен выход из аккаунта'
 
 ];
