@@ -67,13 +67,13 @@ class AuthTest extends \Tests\TestCase
     /**
      * Test user logout (user is authorized)
      */
-    public function testLogoutAuthorized(): void
+    /*public function testLogoutAuthorized(): void
     {
         $this->withoutMiddleware(VerifyCsrfToken::class);
         auth()->login($this->user);
         $this->post(route('user.logout'))->assertStatus(200);
         $this->assertEmpty(auth()->user());
-    }
+    }*/
 
 
 
