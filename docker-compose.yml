@@ -4,14 +4,14 @@ version: '3.8'
 services:
     database-books:
         image: mysql
-        container_name: database-books
+        container_name: database-books-2
         restart: unless-stopped
         environment:
             MYSQL_ROOT_PASSWORD: 1234
         ports:
             - '1234:3306'
     php-apache-books:
-        container_name: php-apache-books
+        container_name: php-apache-books-2
         build:
             context: .
         ports:

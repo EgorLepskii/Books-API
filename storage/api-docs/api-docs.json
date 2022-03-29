@@ -211,7 +211,7 @@
                     {
                         "name": "name",
                         "in": "query",
-                        "description": "book name",
+                        "description": "Book name",
                         "schema": {
                             "type": "string"
                         }

@@ -40,6 +40,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  *      property="authors",
  *      type="string"
  *  ),
+ *
+ *
  * )
  */
 
@@ -112,7 +114,7 @@ class Book extends Model implements Constants
     }
 
     /**
-     * Get similar books between price, except current book
+     * Set query to get similar books  by price
      */
     public function getSimilarByPrice(float $leftLimit, float $rightLimit): self
     {
@@ -125,7 +127,7 @@ class Book extends Model implements Constants
     }
 
     /**
-     * Get similar books, except current book
+     * Set query to get books by genre
      */
     public function getSimilarByGenre(): self
     {
@@ -148,7 +150,7 @@ class Book extends Model implements Constants
     }
 
     /**
-     * Search book by name substring. Update builder for further requests
+     * Set query to search  books by name substring
      */
     public function searchByName(string $name): self
     {
