@@ -9,13 +9,13 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: 1234
         ports:
-            - '1234:3306'
+            - '1234:3303'
     php-apache-books:
         container_name: php-apache-books-2
         build:
             context: .
         ports:
-            - '8085:80'
+            - '8086:80'
         volumes:
             - .:/var/www/laravel_docker
             - ./apache/default.conf:/etc/apache2/sites-enabled/000-default.conf

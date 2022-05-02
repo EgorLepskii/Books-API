@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1651482496">
+  <project timestamp="1651482496">
+    <file name="/var/www/laravel_docker/app/Http/Controllers/AuthController.php">
+      <class name="App\Http\Controllers\AuthController" namespace="global">
+        <metrics complexity="9" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="32" coveredelements="32"/>
+      </class>
+      <line num="22" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="24" type="stmt" count="11"/>
+      <line num="64" type="method" name="login" visibility="public" complexity="3" crap="3" count="6"/>
+      <line num="66" type="stmt" count="6"/>
+      <line num="67" type="stmt" count="6"/>
+      <line num="72" type="stmt" count="6"/>
+      <line num="73" type="stmt" count="1"/>
+      <line num="76" type="stmt" count="5"/>
+      <line num="77" type="stmt" count="1"/>
+      <line num="80" type="stmt" count="4"/>
+      <line num="111" type="method" name="register" visibility="public" complexity="2" crap="2" count="5"/>
+      <line num="113" type="stmt" count="5"/>
+      <line num="114" type="stmt" count="5"/>
+      <line num="121" type="stmt" count="5"/>
+      <line num="123" type="stmt" count="5"/>
+      <line num="124" type="stmt" count="4"/>
+      <line num="127" type="stmt" count="1"/>
+      <line num="128" type="stmt" count="1"/>
+      <line num="129" type="stmt" count="1"/>
+      <line num="130" type="stmt" count="1"/>
+      <line num="133" type="stmt" count="1"/>
+      <line num="135" type="stmt" count="1"/>
+      <line num="142" type="method" name="logout" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="144" type="stmt" count="1"/>
+      <line num="145" type="stmt" count="1"/>
+      <line num="150" type="method" name="refresh" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="152" type="stmt" count="1"/>
+      <line num="159" type="method" name="createNewToken" visibility="protected" complexity="1" crap="1" count="4"/>
+      <line num="161" type="stmt" count="4"/>
+      <line num="163" type="stmt" count="4"/>
+      <line num="165" type="stmt" count="4"/>
+      <line num="166" type="stmt" count="4"/>
+      <metrics loc="171" ncloc="94" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="32" coveredelements="32"/>
+    </file>
+    <file name="/var/www/laravel_docker/app/Http/Controllers/BookPageController.php">
+      <class name="App\Http\Controllers\BookPageController" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="18" elements="20" coveredelements="20"/>
+      </class>
+      <line num="37" type="method" name="index" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="45" type="stmt" count="1"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="79" type="method" name="show" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="81" type="stmt" count="1"/>
+      <line num="82" type="stmt" count="1"/>
+      <line num="84" type="stmt" count="1"/>
+      <line num="85" type="stmt" count="1"/>
+      <line num="86" type="stmt" count="1"/>
+      <line num="89" type="stmt" count="1"/>
+      <line num="90" type="stmt" count="1"/>
+      <line num="91" type="stmt" count="1"/>
+      <line num="92" type="stmt" count="1"/>
+      <line num="93" type="stmt" count="1"/>
+      <line num="94" type="stmt" count="1"/>
+      <line num="97" type="stmt" count="1"/>
+      <metrics loc="100" ncloc="52" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="18" elements="20" coveredelements="20"/>
+    </file>
+    <file name="/var/www/laravel_docker/app/Http/Controllers/Controller.php">
+      <class name="App\Http\Controllers\Controller" namespace="global">
+        <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </class>
+      <metrics loc="44" ncloc="18" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/laravel_docker/app/Http/Controllers/ManageBooksController.php">
+      <class name="App\Http\Controllers\ManageBooksController" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
+      </class>
+      <line num="57" type="method" name="store" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="59" type="stmt" count="2"/>
+      <line num="60" type="stmt" count="2"/>
+      <line num="61" type="stmt" count="2"/>
+      <line num="63" type="stmt" count="2"/>
+      <line num="67" type="stmt" count="2"/>
+      <line num="120" type="method" name="update" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="122" type="stmt" count="2"/>
+      <line num="123" type="stmt" count="2"/>
+      <line num="124" type="stmt" count="2"/>
+      <line num="126" type="stmt" count="2"/>
+      <line num="130" type="stmt" count="2"/>
+      <metrics loc="135" ncloc="47" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
+    </file>
+    <file name="/var/www/laravel_docker/app/Http/Controllers/SearchBookController.php">
+      <class name="App\Http\Controllers\SearchBookController" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="14" coveredelements="14"/>
+      </class>
+      <line num="75" type="method" name="index" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="77" type="stmt" count="5"/>
+      <line num="78" type="stmt" count="5"/>
+      <line num="79" type="stmt" count="5"/>
+      <line num="80" type="stmt" count="5"/>
+      <line num="83" type="stmt" count="5"/>
+      <line num="84" type="stmt" count="5"/>
+      <line num="86" type="stmt" count="5"/>
+      <line num="87" type="stmt" count="5"/>
+      <line num="88" type="stmt" count="5"/>
+      <line num="89" type="stmt" count="5"/>
+      <line num="90" type="stmt" count="5"/>
+      <line num="91" type="stmt" count="5"/>
+      <line num="93" type="stmt" count="5"/>
+      <metrics loc="98" ncloc="45" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="14" coveredelements="14"/>
+    </file>
+    <file name="/var/www/laravel_docker/app/Http/Requests/CreateBookRequest.php">
+      <class name="App\Http\Requests\CreateBookRequest" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="18" elements="21" coveredelements="21"/>
+      </class>
+      <line num="18" type="method" name="authorize" visibility="public" complexity="1" crap="1" count="27"/>
+      <line num="20" type="stmt" count="27"/>
+      <line num="28" type="method" name="rules" visibility="public" complexity="1" crap="1" count="27"/>
+      <line num="30" type="stmt" count="27"/>
+      <line num="31" type="stmt" count="27"/>
+      <line num="32" type="stmt" count="27"/>
+      <line num="33" type="stmt" count="27"/>
+      <line num="36" type="stmt" count="27"/>
+      <line num="37" type="stmt" count="27"/>
+      <line num="38" type="stmt" count="27"/>
+      <line num="39" type="stmt" count="27"/>
+      <line num="48" type="method" name="messages" visibility="public" complexity="1" crap="1" count="27"/>
+      <line num="52" type="stmt" count="27"/>
+      <line num="53" type="stmt" count="27"/>
+      <line num="54" type="stmt" count="27"/>
+      <line num="55" type="stmt" count="27"/>
+      <line num="56" type="stmt" count="27"/>
+      <line num="57" type="stmt" count="27"/>
+      <line num="58" type="stmt" count="27"/>
+      <line num="59" type="stmt" count="27"/>
+      <line num="61" type="stmt" count="27"/>
+      <metrics loc="65" ncloc="54" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="18" elements="21" coveredelements="21"/>
+    </file>
+    <file name="/var/www/laravel_docker/app/Http/Requests/SearchBookRequest.php">
+      <class name="App\Http\Requests\SearchBookRequest" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+      </class>
+      <line num="17" type="method" name="authorize" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="19" type="stmt" count="5"/>
+      <line num="27" type="method" name="rules" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="30" type="stmt" count="5"/>
+      <metrics loc="37" ncloc="26" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+    </file>
+    <file name="/var/www/laravel_docker/app/Http/Requests/UpdateBookRequest.php">
+      <class name="App\Http\Requests\UpdateBookRequest" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="18" elements="21" coveredelements="21"/>
+      </class>
+      <line num="14" type="method" name="authorize" visibility="public" complexity="1" crap="1" count="29"/>
+      <line num="16" type="stmt" count="29"/>
+      <line num="24" type="method" name="rules" visibility="public" complexity="1" crap="1" count="29"/>
+      <line num="26" type="stmt" count="29"/>
+      <line num="27" type="stmt" count="29"/>
+      <line num="28" type="stmt" count="29"/>
+      <line num="29" type="stmt" count="29"/>
+      <line num="32" type="stmt" count="29"/>
+      <line num="33" type="stmt" count="29"/>
+      <line num="34" type="stmt" count="29"/>
+      <line num="35" type="stmt" count="29"/>
+      <line num="47" type="method" name="messages" visibility="public" complexity="1" crap="1" count="29"/>
+      <line num="51" type="stmt" count="29"/>
+      <line num="52" type="stmt" count="29"/>
+      <line num="53" type="stmt" count="29"/>
+      <line num="54" type="stmt" count="29"/>
+      <line num="55" type="stmt" count="29"/>
+      <line num="56" type="stmt" count="29"/>
+      <line num="57" type="stmt" count="29"/>
+      <line num="58" type="stmt" count="29"/>
+      <line num="60" type="stmt" count="29"/>
+      <metrics loc="64" ncloc="53" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="18" elements="21" coveredelements="21"/>
+    </file>
+    <file name="/var/www/laravel_docker/app/Models/Admin.php">
+      <class name="App\Models\Admin" namespace="global">
+        <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </class>
+      <metrics loc="19" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/laravel_docker/app/Models/Book.php">
+      <class name="App\Models\Book" namespace="global">
+        <metrics complexity="16" methods="12" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="38" elements="50" coveredelements="50"/>
+      </class>
+      <line num="82" type="method" name="getName" visibility="public" complexity="1" crap="1" count="39"/>
+      <line num="84" type="stmt" count="39"/>
+      <line num="90" type="method" name="getId" visibility="public" complexity="1" crap="1" count="52"/>
+      <line num="92" type="stmt" count="52"/>
+      <line num="98" type="method" name="getGenreId" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="100" type="stmt" count="2"/>
+      <line num="106" type="method" name="getPrice" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="108" type="stmt" count="1"/>
+      <line num="111" type="method" name="genre" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="113" type="stmt" count="1"/>
+      <line num="119" type="method" name="getSimilarByPrice" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="121" type="stmt" count="2"/>
+      <line num="122" type="stmt" count="2"/>
+      <line num="123" type="stmt" count="2"/>
+      <line num="124" type="stmt" count="2"/>
+      <line num="126" type="stmt" count="2"/>
+      <line num="132" type="method" name="getSimilarByGenre" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="134" type="stmt" count="2"/>
+      <line num="135" type="stmt" count="2"/>
+      <line num="136" type="stmt" count="2"/>
+      <line num="137" type="stmt" count="2"/>
+      <line num="139" type="stmt" count="2"/>
+      <line num="142" type="method" name="setBuilder" visibility="public" complexity="1" crap="1" count="25"/>
+      <line num="144" type="stmt" count="25"/>
+      <line num="147" type="method" name="getBuilder" visibility="public" complexity="1" crap="1" count="25"/>
+      <line num="149" type="stmt" count="25"/>
+      <line num="155" type="method" name="searchByName" visibility="public" complexity="2" crap="2" count="11"/>
+      <line num="157" type="stmt" count="11"/>
+      <line num="158" type="stmt" count="1"/>
+      <line num="161" type="stmt" count="10"/>
+      <line num="162" type="stmt" count="10"/>
+      <line num="163" type="stmt" count="10"/>
+      <line num="164" type="stmt" count="10"/>
+      <line num="166" type="stmt" count="10"/>
+      <line num="174" type="method" name="searchByAuthors" visibility="public" complexity="2" crap="2" count="11"/>
+      <line num="177" type="stmt" count="11"/>
+      <line num="178" type="stmt" count="1"/>
+      <line num="181" type="stmt" count="10"/>
+      <line num="182" type="stmt" count="10"/>
+      <line num="183" type="stmt" count="10"/>
+      <line num="184" type="stmt" count="10"/>
+      <line num="186" type="stmt" count="10"/>
+      <line num="193" type="method" name="searchByPrice" visibility="public" complexity="3" crap="3" count="10"/>
+      <line num="195" type="stmt" count="10"/>
+      <line num="196" type="stmt" count="1"/>
+      <line num="199" type="stmt" count="9"/>
+      <line num="200" type="stmt" count="9"/>
+      <line num="201" type="stmt" count="9"/>
+      <line num="202" type="stmt" count="9"/>
+      <line num="205" type="stmt" count="9"/>
+      <metrics loc="210" ncloc="137" classes="1" methods="12" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="38" elements="50" coveredelements="50"/>
+    </file>
+    <file name="/var/www/laravel_docker/app/Models/Genre.php">
+      <class name="App\Models\Genre" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+      </class>
+      <line num="36" type="method" name="getId" visibility="public" complexity="1" crap="1" count="80"/>
+      <line num="38" type="stmt" count="80"/>
+      <line num="41" type="method" name="books" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <metrics loc="46" ncloc="31" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+    </file>
+    <file name="/var/www/laravel_docker/app/Models/User.php">
+      <class name="App\Models\User" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
+      </class>
+      <line num="71" type="method" name="isAdmin" visibility="public" complexity="1" crap="1" count="17"/>
+      <line num="73" type="stmt" count="17"/>
+      <line num="95" type="method" name="getJWTIdentifier" visibility="public" complexity="1" crap="1" count="21"/>
+      <line num="97" type="stmt" count="21"/>
+      <line num="100" type="method" name="getJWTCustomClaims" visibility="public" complexity="1" crap="1" count="21"/>
+      <line num="102" type="stmt" count="21"/>
+      <metrics loc="105" ncloc="52" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
+    </file>
+    <metrics files="12" loc="1094" ncloc="625" classes="10" methods="36" coveredmethods="36" conditionals="0" coveredconditionals="0" statements="148" coveredstatements="148" elements="184" coveredelements="184"/>
+  </project>
+</coverage>
